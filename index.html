@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      (function () {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var forced = params.get('kioskMode');
+          var mode = 'modern';
+
+          if (forced === 'legacy' || forced === 'modern') {
+            mode = forced;
+          } else {
+            var ua = navigator.userAgent || '';
+            var isAndroid = /Android/i.test(ua);
+            var hasTouch = (navigator.maxTouchPoints || 0) > 1 || 'ontouchstart' in window;
+            var minDim = Math.min(window.screen.width || 0, window.screen.height || 0);
+            var tabletHint = /(Tablet|Tab|SM-T|Lenovo TB|Lenovo TB-|Nexus 7|Nexus 10|Silk|KF[A-Z]+|Android(?!.*Mobile))/i.test(ua);
+
+            if (isAndroid && hasTouch && (tabletHint || (minDim >= 600 && minDim <= 1600))) {
+              mode = 'legacy';
+            }
+          }
+
+          document.documentElement.setAttribute('data-kiosk-mode', mode);
+        } catch (error) {
+          document.documentElement.setAttribute('data-kiosk-mode', 'modern');
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Google AI Studio App</title>
@@ -10,4 +37,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
