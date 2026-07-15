@@ -175,68 +175,68 @@ export const PrintConfirmation = () => {
   };
 
   return (
-    <div className="kiosk-screen flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+    <div className="kiosk-screen relative z-10 flex h-full w-full flex-1 flex-col items-center justify-center p-6">
       <Button
         variant="ghost"
         size="lg"
-        className="absolute top-24 left-6 text-gray-700 hover:text-gray-950 bg-white/95 hover:bg-white/100 backdrop-blur-md rounded-full px-6 shadow-md border border-gray-300"
+        className="absolute left-[24px] top-[92px] rounded-full border border-gray-300 bg-white/95 px-6 text-gray-700 shadow-md backdrop-blur-md hover:bg-white hover:text-gray-950"
         onClick={() => navigate('/')}
         disabled={loading}
       >
-        <ChevronLeft className="w-8 h-8 mr-2" />
+        <ChevronLeft className="mr-2 h-8 w-8" />
         Cancel
       </Button>
 
-      <div className="w-full max-w-2xl space-y-4 mt-4">
-        <div className="text-center space-y-1 text-gray-900">
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight drop-shadow-sm">Confirm Print Job</h2>
-          <p className="text-xl text-gray-700">Review your document details before printing</p>
+      <div className="mt-4 w-full max-w-[740px] space-y-4">
+        <div className="space-y-1 text-center text-gray-900">
+          <h2 className="text-[44px] font-bold tracking-tight">Confirm Print Job</h2>
+          <p className="text-[22px] text-gray-700">Review your document details before printing</p>
         </div>
 
         {!needsOtp ? (
-          <Card className="kiosk-panel overflow-hidden border-0 shadow-2xl bg-white/96 backdrop-blur-xl rounded-3xl">
-            <div className="bg-gradient-to-r from-[#fff7ed] to-[#fff1f4] p-6 border-b border-gray-100 flex items-start space-x-6">
-              <div className="p-3 bg-white rounded-2xl text-[#f03861] shadow-sm border border-[#f5a623]/15">
-                <FileText className="w-10 h-10" />
+          <Card className="kiosk-panel overflow-hidden rounded-[3rem] border-0 bg-white/96 shadow-2xl backdrop-blur-xl">
+            <div className="flex items-start space-x-6 border-b border-gray-100 bg-gradient-to-r from-[#fff7ed] to-[#fff1f4] p-6">
+              <div className="rounded-2xl border border-[#f5a623]/15 bg-white p-3 text-[#f03861] shadow-sm">
+                <FileText className="h-10 w-10" />
               </div>
-              <div className="flex-1 overflow-hidden">
-                <h3 className="text-xl font-semibold text-gray-900 truncate" title={job.filename}>
+              <div className="min-w-0 flex-1 overflow-hidden">
+                <h3 className="truncate text-[22px] font-semibold text-gray-900" title={job.filename}>
                   {job.filename}
                 </h3>
-                <div className="mt-1 text-base text-gray-600 font-mono">
+                <div className="mt-1 font-mono text-[17px] text-gray-600">
                   Code: {job.pickup_code || String(job.id).toUpperCase()}
                 </div>
               </div>
             </div>
 
             <CardContent className="p-6">
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
-                  <div className="text-gray-700 text-sm font-medium mb-1">Total Pages</div>
-                  <div className="text-3xl font-semibold text-gray-950">{job.pages || '-'}</div>
+              <div className="mb-4 grid grid-cols-2 gap-4">
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+                  <div className="mb-1 text-[14px] font-medium text-gray-700">Total Pages</div>
+                  <div className="text-[34px] font-semibold text-gray-950">{job.pages || '-'}</div>
                 </div>
-                <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
-                  <div className="text-gray-700 text-sm font-medium mb-1">Copies</div>
-                  <div className="text-3xl font-semibold text-gray-950">{job.copies || '-'}</div>
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+                  <div className="mb-1 text-[14px] font-medium text-gray-700">Copies</div>
+                  <div className="text-[34px] font-semibold text-gray-950">{job.copies || '-'}</div>
                 </div>
-                <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
-                  <div className="text-gray-700 text-sm font-medium mb-1">Color Mode</div>
-                  <div className="text-xl font-semibold text-gray-950 mt-1">
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+                  <div className="mb-1 text-[14px] font-medium text-gray-700">Color Mode</div>
+                  <div className="mt-1 text-[22px] font-semibold text-gray-950">
                     {job.color ? 'Full Color' : 'Black & White'}
                   </div>
                 </div>
-                <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
-                  <div className="text-gray-700 text-sm font-medium mb-1">Estimated Time</div>
-                  <div className="text-xl font-semibold text-gray-950 mt-1">
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+                  <div className="mb-1 text-[14px] font-medium text-gray-700">Estimated Time</div>
+                  <div className="mt-1 text-[22px] font-semibold text-gray-950">
                     {job.estimated_time_seconds ? `${Math.ceil(job.estimated_time_seconds / 60)} min` : '-'}
                   </div>
                 </div>
               </div>
 
               {error && (
-                <div className="flex items-center space-x-3 bg-red-50 text-red-700 p-3 rounded-xl mb-4 border border-red-200 shadow-sm">
-                  <AlertTriangle className="w-5 h-5 shrink-0" />
-                  <span className="font-medium text-base">{error}</span>
+                <div className="mb-4 flex items-center space-x-3 rounded-xl border border-red-200 bg-red-50 p-3 text-red-700 shadow-sm">
+                  <AlertTriangle className="h-5 w-5 shrink-0" />
+                  <span className="text-[16px] font-medium">{error}</span>
                 </div>
               )}
 
@@ -244,11 +244,11 @@ export const PrintConfirmation = () => {
                 <motion.div key="print" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                   <Button
                     size="xl"
-                    className="w-full text-2xl h-16 rounded-2xl shadow-[0_14px_28px_rgba(240,56,97,0.24)] border border-[#b91c1c]"
+                    className="h-[76px] w-full rounded-2xl border border-[#b91c1c] text-[24px] font-bold shadow-[0_14px_28px_rgba(240,56,97,0.24)]"
                     onClick={handlePrint}
                     disabled={loading}
                   >
-                    {loading ? <Loader2 className="w-8 h-8 animate-spin mr-2" /> : null}
+                    {loading ? <Loader2 className="mr-2 h-8 w-8 animate-spin" /> : null}
                     {loading ? 'Processing...' : (job.email ? 'Send OTP to Release' : 'Print Document')}
                   </Button>
                 </motion.div>
@@ -256,29 +256,29 @@ export const PrintConfirmation = () => {
             </CardContent>
           </Card>
         ) : (
-          <Card className="kiosk-panel overflow-hidden border-0 shadow-2xl bg-white/96 backdrop-blur-xl rounded-3xl">
-            <div className="p-6 sm:p-8 border-b border-gray-100 bg-gradient-to-r from-[#fff7ed] to-[#fff1f4]">
+          <Card className="kiosk-panel overflow-hidden rounded-[3rem] border-0 bg-white/96 shadow-2xl backdrop-blur-xl">
+            <div className="border-b border-gray-100 bg-gradient-to-r from-[#fff7ed] to-[#fff1f4] p-6">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-white rounded-2xl text-[#f03861] shadow-sm border border-[#f5a623]/15">
-                  <KeyRound className="w-10 h-10" />
+                <div className="rounded-2xl border border-[#f5a623]/15 bg-white p-3 text-[#f03861] shadow-sm">
+                  <KeyRound className="h-10 w-10" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-950">Enter OTP</h3>
-                  <p className="text-gray-700">Use the keypad below to enter the 6-digit code sent to {maskedEmail}</p>
+                  <h3 className="text-[26px] font-bold text-gray-950">Enter OTP</h3>
+                  <p className="text-[18px] text-gray-700">Use the keypad below to enter the 6-digit code sent to {maskedEmail}</p>
                 </div>
               </div>
             </div>
 
-            <CardContent className="p-6 sm:p-8">
+            <CardContent className="p-6">
               <div className="space-y-6">
-                <div className="rounded-3xl border-2 border-dashed border-gray-300 bg-gray-50 px-4 py-6 text-center select-none">
-                  <div className="font-mono text-4xl font-semibold text-gray-950 min-h-12 flex items-center justify-center gap-3">
+                <div className="select-none rounded-3xl border-2 border-dashed border-gray-300 bg-gray-50 px-4 py-6 text-center">
+                  <div className="flex min-h-[56px] items-center justify-center gap-3 font-mono text-[40px] font-semibold text-gray-950">
                     {Array.from({ length: OTP_LENGTH }).map((_, index) => {
                       const digit = otp[index];
                       return (
                         <span
                           key={`slot-${index}`}
-                          className="inline-flex w-10 h-12 items-center justify-center rounded-xl border-2 border-gray-300 bg-white text-gray-950 shadow-sm"
+                          className="inline-flex h-[54px] w-[50px] items-center justify-center rounded-xl border-2 border-gray-300 bg-white text-gray-950 shadow-sm"
                         >
                           {digit || ''}
                         </span>
@@ -288,18 +288,18 @@ export const PrintConfirmation = () => {
                 </div>
 
                 {error && (
-                  <div className="flex items-center space-x-3 bg-red-50 text-red-700 p-3 rounded-xl border border-red-200 shadow-sm">
-                    <AlertTriangle className="w-5 h-5 shrink-0" />
-                    <span className="font-medium text-base">{error}</span>
+                  <div className="flex items-center space-x-3 rounded-xl border border-red-200 bg-red-50 p-3 text-red-700 shadow-sm">
+                    <AlertTriangle className="h-5 w-5 shrink-0" />
+                    <span className="text-[16px] font-medium">{error}</span>
                   </div>
                 )}
 
-                <div className="kiosk-otp-grid grid grid-cols-3 gap-3 sm:gap-4 select-none">
+                <div className="kiosk-otp-grid grid grid-cols-3 gap-3 select-none">
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((digit) => (
                     <Button
                       key={digit}
                       variant="outline"
-                      className="h-16 sm:h-20 text-4xl font-semibold rounded-2xl border-2 border-gray-300 bg-white text-gray-950 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
+                      className="h-[72px] rounded-2xl border-2 border-gray-300 bg-white text-[34px] font-semibold text-gray-950 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
                       onClick={() => handleOtpDigit(String(digit))}
                       disabled={loading || otp.length >= OTP_LENGTH}
                     >
@@ -308,7 +308,7 @@ export const PrintConfirmation = () => {
                   ))}
                   <Button
                     variant="outline"
-                    className="h-16 sm:h-20 text-4xl font-semibold rounded-2xl border-2 border-gray-300 bg-white text-gray-950 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
+                    className="h-[72px] rounded-2xl border-2 border-gray-300 bg-white text-[34px] font-semibold text-gray-950 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
                     onClick={() => handleOtpDigit('0')}
                     disabled={loading || otp.length >= OTP_LENGTH}
                   >
@@ -316,15 +316,15 @@ export const PrintConfirmation = () => {
                   </Button>
                   <Button
                     variant="outline"
-                    className="h-16 sm:h-20 text-xl rounded-2xl bg-gray-100 border-gray-300 text-gray-800 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
+                    className="h-[72px] rounded-2xl border-2 border-gray-300 bg-gray-100 text-[18px] text-gray-800 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
                     onClick={handleOtpDelete}
                     disabled={loading || otp.length === 0}
                   >
-                    <Delete className="w-8 h-8" />
+                    <Delete className="h-8 w-8" />
                   </Button>
                   <Button
                     variant="outline"
-                    className="h-16 sm:h-20 text-xl rounded-2xl bg-gray-100 border-gray-300 text-gray-800 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
+                    className="h-[72px] rounded-2xl border-2 border-gray-300 bg-gray-100 text-[18px] text-gray-800 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
                     onClick={handleOtpClear}
                     disabled={loading || otp.length === 0}
                   >
@@ -334,11 +334,11 @@ export const PrintConfirmation = () => {
 
                 <Button
                   size="xl"
-                  className="w-full mt-2 h-16 rounded-2xl text-2xl font-bold border border-[#b91c1c] shadow-[0_14px_28px_rgba(240,56,97,0.24)]"
+                  className="mt-2 h-[76px] w-full rounded-2xl border border-[#b91c1c] text-[24px] font-bold shadow-[0_14px_28px_rgba(240,56,97,0.24)]"
                   onClick={handleVerifyOtp}
                   disabled={otp.length < OTP_LENGTH || loading}
                 >
-                  {loading ? <Loader2 className="w-8 h-8 animate-spin mr-2" /> : null}
+                  {loading ? <Loader2 className="mr-2 h-8 w-8 animate-spin" /> : null}
                   Verify & Print
                 </Button>
               </div>

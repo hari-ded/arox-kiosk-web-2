@@ -48,7 +48,7 @@ export const KioskLayout = () => {
   }, [location.pathname, navigate]);
 
   return (
-    <div className="kiosk-shell relative h-[100dvh] w-full flex flex-col overflow-hidden selection:bg-[#f03861]/20 bg-[#fafafc] text-gray-900 font-sans">
+    <div className="kiosk-shell relative h-full w-full flex flex-col overflow-hidden selection:bg-[#f03861]/20 bg-[#fafafc] text-gray-900 font-sans">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[10%] left-[5%] w-3 h-3 rounded-full bg-pink-200 opacity-50"></div>
         <div className="absolute top-[5%] right-[25%] w-4 h-4 rounded-full bg-orange-200 opacity-50"></div>
@@ -62,7 +62,7 @@ export const KioskLayout = () => {
 
       <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-60"></div>
 
-      <header className="kiosk-header relative z-20 flex items-center justify-between gap-4 px-6 pt-4 sm:px-8 sm:pt-6">
+      <header className="kiosk-header relative z-20 flex h-[84px] items-center justify-between gap-4 px-6 pt-4">
         <KioskBrandMark />
 
         <Button
@@ -77,23 +77,23 @@ export const KioskLayout = () => {
         </Button>
       </header>
 
-      <main className="kiosk-main flex-1 flex flex-col z-10 px-4 pb-28 pt-4 sm:px-6 sm:pt-6">
+      <main className="kiosk-main relative z-10 flex flex-1 flex-col px-6 pt-2 pb-[92px]">
         <Outlet />
       </main>
 
-      <footer className="kiosk-footer absolute bottom-0 left-0 w-full px-6 pb-6 pt-4 sm:px-8 sm:pb-8 flex justify-between items-end z-20 pointer-events-none">
+      <footer className="kiosk-footer absolute bottom-0 left-0 z-20 flex w-full items-end justify-between px-6 pb-4 pointer-events-none">
         <div className="w-1/3"></div>
 
-        <div className="w-1/3 flex justify-center">
-          <div className="kiosk-footer__status bg-white border border-gray-100 shadow-sm rounded-full px-6 py-2 flex items-center space-x-2">
-            <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
+        <div className="flex w-1/3 justify-center">
+          <div className="kiosk-footer__status flex items-center space-x-2 rounded-full border border-gray-100 bg-white px-6 py-2 shadow-sm">
+            <div className="h-2.5 w-2.5 rounded-full bg-green-500"></div>
             <span className="text-sm font-bold tracking-widest text-gray-500 uppercase">Printer Ready</span>
           </div>
         </div>
 
-        <div className="w-1/3 flex justify-end">
-          <span className="kiosk-footer__brand text-gray-400 text-sm font-medium text-right">
-            A Product of <span className="text-[#f03861] font-bold">SPARKH INFOTECH LLP</span>
+        <div className="flex w-1/3 justify-end">
+          <span className="kiosk-footer__brand text-right text-sm font-medium text-gray-400">
+            A Product of <span className="font-bold text-[#f03861]">SPARKH INFOTECH LLP</span>
           </span>
         </div>
       </footer>

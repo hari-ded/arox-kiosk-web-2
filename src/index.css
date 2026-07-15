@@ -17,14 +17,24 @@
   }
 
   body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    background: #fafafc;
+    background: #111827;
     color: #111827;
+  }
+
+  #root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111827;
   }
 
   *,

@@ -85,45 +85,45 @@ export const QRScan = () => {
   }, [navigate]);
 
   return (
-    <div className="kiosk-screen flex-1 flex flex-col items-center justify-center p-6 bg-black">
-      <Button 
-        variant="ghost" 
+    <div className="kiosk-screen relative z-10 flex h-full w-full flex-1 flex-col items-center justify-center bg-black p-6">
+      <Button
+        variant="ghost"
         size="lg"
-        className="absolute top-24 left-6 text-white hover:text-white/80 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full px-6"
+        className="absolute left-[24px] top-[92px] rounded-full border border-white/20 bg-black/25 px-6 text-white backdrop-blur-md hover:bg-black/45 hover:text-white/90"
         onClick={() => navigate('/')}
       >
-        <ChevronLeft className="w-8 h-8 mr-2" />
+        <ChevronLeft className="mr-2 h-8 w-8" />
         Cancel Scan
       </Button>
 
-      <div className="w-full max-w-2xl flex flex-col items-center space-y-8">
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl font-bold tracking-tight text-white">Scan QR Code</h2>
-          <p className="text-xl text-gray-300">Hold your code up to the camera</p>
+      <div className="flex w-full max-w-[760px] flex-col items-center space-y-6">
+        <div className="space-y-3 text-center">
+          <h2 className="text-[44px] font-bold tracking-tight text-white">Scan QR Code</h2>
+          <p className="text-[22px] text-gray-300">Hold your code up to the camera</p>
         </div>
 
-        <div className="kiosk-scan-frame relative w-full aspect-square max-w-md rounded-3xl overflow-hidden bg-gray-900 border-4 border-gray-800 shadow-2xl">
-          <div id="qr-reader" className="kiosk-scan-frame__reader w-full h-full object-cover"></div>
+        <div className="kiosk-scan-frame relative aspect-square w-full max-w-[420px] overflow-hidden rounded-3xl border-4 border-gray-800 bg-gray-900 shadow-2xl">
+          <div id="qr-reader" className="kiosk-scan-frame__reader h-full w-full object-cover"></div>
 
           {loading && (
-             <div className="absolute inset-0 bg-black/80 flex items-center justify-center flex-col z-20">
-               <QrCode className="w-16 h-16 text-[#f5a623] animate-pulse mb-4" />
-               <p className="text-white text-xl font-medium">Validating...</p>
-             </div>
+            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80">
+              <QrCode className="mb-4 h-16 w-16 animate-pulse text-[#f5a623]" />
+              <p className="text-xl font-medium text-white">Validating...</p>
+            </div>
           )}
 
-          <div className="kiosk-scan-frame__overlay absolute inset-0 border-[40px] border-black/50 z-10 pointer-events-none">
-            <div className="w-full h-full border-4 border-[#f5a623]/50 relative">
-               <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-[#f5a623] -ml-1 -mt-1"></div>
-               <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-[#f5a623] -mr-1 -mt-1"></div>
-               <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-[#f5a623] -ml-1 -mb-1"></div>
-               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-[#f5a623] -mr-1 -mb-1"></div>
+          <div className="kiosk-scan-frame__overlay absolute inset-0 z-10 pointer-events-none border-[36px] border-black/50">
+            <div className="relative h-full w-full border-4 border-[#f5a623]/50">
+              <div className="absolute left-0 top-0 -ml-1 -mt-1 h-8 w-8 border-l-4 border-t-4 border-[#f5a623]"></div>
+              <div className="absolute right-0 top-0 -mr-1 -mt-1 h-8 w-8 border-r-4 border-t-4 border-[#f5a623]"></div>
+              <div className="absolute bottom-0 left-0 -mb-1 -ml-1 h-8 w-8 border-b-4 border-l-4 border-[#f5a623]"></div>
+              <div className="absolute bottom-0 right-0 -mb-1 -mr-1 h-8 w-8 border-b-4 border-r-4 border-[#f5a623]"></div>
             </div>
           </div>
         </div>
 
         {error && (
-          <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-lg py-4 px-8 rounded-2xl font-medium max-w-md w-full text-center">
+          <div className="w-full max-w-[420px] rounded-2xl border border-red-500/50 bg-red-500/10 px-8 py-4 text-center text-[18px] font-medium text-red-300">
             {error}
           </div>
         )}
@@ -131,6 +131,3 @@ export const QRScan = () => {
     </div>
   );
 };
-
-
-

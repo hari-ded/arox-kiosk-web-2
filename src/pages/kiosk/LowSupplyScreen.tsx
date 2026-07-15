@@ -125,69 +125,69 @@ export const LowSupplyScreen: React.FC<LowSupplyScreenProps> = ({ initialConsuma
 
   if (loading) {
     return (
-      <div className="kiosk-screen flex-1 flex items-center justify-center p-6 relative z-10">
-        <Card className="w-full max-w-2xl p-10 sm:p-14 rounded-[3rem] border-0 shadow-2xl bg-white/95 backdrop-blur-xl text-center">
-          <Loader2 className="w-14 h-14 animate-spin mx-auto text-[#f03861]" />
-          <h2 className="mt-6 text-4xl font-bold tracking-tight text-gray-950">Checking consumables...</h2>
-          <p className="mt-3 text-xl text-gray-600">Please wait while we confirm the printer is ready.</p>
+      <div className="kiosk-screen relative z-10 flex h-full w-full flex-1 items-center justify-center p-6">
+        <Card className="w-full max-w-[720px] rounded-[3rem] border-0 bg-white/95 p-10 text-center shadow-2xl backdrop-blur-xl">
+          <Loader2 className="mx-auto h-14 w-14 animate-spin text-[#f03861]" />
+          <h2 className="mt-6 text-[44px] font-bold tracking-tight text-gray-950">Checking consumables...</h2>
+          <p className="mt-3 text-[22px] text-gray-600">Please wait while we confirm the printer is ready.</p>
         </Card>
       </div>
     );
   }
 
   return (
-    <div className="kiosk-screen flex-1 flex items-center justify-center p-6 relative z-10">
+    <div className="kiosk-screen relative z-10 flex h-full w-full flex-1 items-center justify-center p-6">
       <motion.div
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.35 }}
-        className="w-full max-w-3xl"
+        className="w-full max-w-[820px]"
       >
-        <Card className="kiosk-panel overflow-hidden rounded-[3rem] border-0 shadow-2xl bg-white/95 backdrop-blur-xl">
-          <div className="bg-gradient-to-r from-[#fff7ed] via-[#fff4f0] to-[#fff1f4] px-6 py-8 sm:px-10 sm:py-12 border-b border-gray-100">
-            <div className="flex items-start gap-5 sm:gap-6">
-              <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-red-50 text-[#f03861] flex items-center justify-center shadow-inner">
-                <AlertTriangle className="w-10 h-10 sm:w-12 sm:h-12" />
+        <Card className="kiosk-panel overflow-hidden rounded-[3rem] border-0 bg-white/95 shadow-2xl backdrop-blur-xl">
+          <div className="border-b border-gray-100 bg-gradient-to-r from-[#fff7ed] via-[#fff4f0] to-[#fff1f4] px-6 py-8">
+            <div className="flex items-start gap-5">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-red-50 text-[#f03861] shadow-inner">
+                <AlertTriangle className="h-10 w-10" />
               </div>
               <div className="space-y-3">
-                <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-950">{headline}</h2>
-                <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed max-w-2xl">{message}</p>
+                <h2 className="text-[44px] font-extrabold tracking-tight text-gray-950">{headline}</h2>
+                <p className="max-w-[700px] text-[22px] leading-relaxed text-gray-700">{message}</p>
               </div>
             </div>
           </div>
 
-          <div className="px-6 py-8 sm:px-10 sm:py-10 space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-6 px-6 py-8">
+            <div className="grid grid-cols-2 gap-4">
               <div className="rounded-3xl border border-gray-100 bg-gray-50 p-5">
-                <div className="text-sm font-semibold uppercase tracking-wider text-gray-500">Paper Remaining</div>
-                <div className="mt-2 text-4xl font-bold text-gray-950">{paperRemaining}</div>
-                <div className="mt-1 text-sm text-gray-500">of {paperCapacity || '-'}</div>
+                <div className="text-[14px] font-semibold uppercase tracking-wider text-gray-500">Paper Remaining</div>
+                <div className="mt-2 text-[40px] font-bold text-gray-950">{paperRemaining}</div>
+                <div className="mt-1 text-[14px] text-gray-500">of {paperCapacity || '-'}</div>
               </div>
               <div className="rounded-3xl border border-gray-100 bg-gray-50 p-5">
-                <div className="text-sm font-semibold uppercase tracking-wider text-gray-500">Toner Remaining</div>
-                <div className="mt-2 text-4xl font-bold text-gray-950">{tonerRemaining}</div>
-                <div className="mt-1 text-sm text-gray-500">of {tonerCapacity || '-'}</div>
+                <div className="text-[14px] font-semibold uppercase tracking-wider text-gray-500">Toner Remaining</div>
+                <div className="mt-2 text-[40px] font-bold text-gray-950">{tonerRemaining}</div>
+                <div className="mt-1 text-[14px] text-gray-500">of {tonerCapacity || '-'}</div>
               </div>
             </div>
 
-            <div className="rounded-3xl border border-dashed border-[#f5a623]/30 bg-[#fffaf3] px-5 py-4 text-gray-700 text-lg">
+            <div className="rounded-3xl border border-dashed border-[#f5a623]/30 bg-[#fffaf3] px-5 py-4 text-[18px] text-gray-700">
               Service has been alerted and will be there in a few minutes. Sorry for the inconvenience.
             </div>
 
             {error && (
-              <div className="rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-red-700 text-base">
+              <div className="rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-[16px] text-red-700">
                 {error}
               </div>
             )}
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-4">
               <Button
                 size="xl"
-                className="flex-1 rounded-2xl h-16 text-xl font-bold"
+                className="h-[76px] flex-1 rounded-2xl text-[24px] font-bold"
                 onClick={handleCallService}
                 disabled={alerting}
               >
-                {alerting ? <Loader2 className="w-7 h-7 animate-spin mr-2" /> : <PhoneCall className="w-7 h-7 mr-2" />}
+                {alerting ? <Loader2 className="mr-2 h-7 w-7 animate-spin" /> : <PhoneCall className="mr-2 h-7 w-7" />}
                 {alertSent ? 'Service Alert Sent' : 'Call Nearby Service Man'}
               </Button>
             </div>
@@ -197,4 +197,3 @@ export const LowSupplyScreen: React.FC<LowSupplyScreenProps> = ({ initialConsuma
     </div>
   );
 };
-

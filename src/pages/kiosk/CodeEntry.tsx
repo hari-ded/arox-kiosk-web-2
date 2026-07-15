@@ -61,49 +61,51 @@ export const CodeEntry = () => {
   };
 
   return (
-    <div className="kiosk-screen flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+    <div className="kiosk-screen relative z-10 flex h-full w-full flex-1 flex-col items-center justify-center p-6">
       <Button
         variant="ghost"
         size="lg"
-        className="absolute top-24 left-6 text-gray-700 hover:text-gray-950 bg-white/95 backdrop-blur-sm rounded-full px-6 shadow-md border border-gray-300"
+        className="absolute left-[24px] top-[92px] rounded-full border border-gray-300 bg-white/95 px-6 text-gray-700 shadow-md backdrop-blur-sm hover:bg-white hover:text-gray-950"
         onClick={() => navigate('/')}
       >
-        <ChevronLeft className="w-8 h-8 mr-2" />
+        <ChevronLeft className="mr-2 h-8 w-8" />
         Back
       </Button>
 
-      <div className="w-full max-w-lg space-y-4 sm:space-y-6 mt-4">
-        <div className="text-center space-y-2">
-          <h2 className="text-4xl font-extrabold tracking-tight text-gray-950">Enter Code</h2>
-          <p className="text-xl text-gray-700 font-medium">Your 6-digit pickup code</p>
+      <div className="mt-4 w-full max-w-[640px] space-y-5">
+        <div className="space-y-2 text-center">
+          <h2 className="text-[44px] font-extrabold tracking-tight text-gray-950">Enter Code</h2>
+          <p className="text-[22px] font-medium text-gray-700">Your 6-digit pickup code</p>
         </div>
 
-        <div className="kiosk-panel bg-white/96 backdrop-blur-xl rounded-[2.5rem] p-6 border border-gray-200 shadow-2xl shadow-black/10">
-          <div className="kiosk-code-display h-20 mb-6 rounded-3xl bg-gray-50 border-2 border-gray-300 flex items-center justify-center shadow-inner overflow-hidden px-4">
-            <div className="flex items-center justify-center font-mono text-gray-950 font-bold text-4xl sm:text-5xl tracking-[0.18em]">
-              <span className="text-[#f03861] mr-1">ARX-</span>
+        <div className="kiosk-panel rounded-[2.5rem] border border-gray-200 bg-white/96 p-7 shadow-2xl shadow-black/10 backdrop-blur-xl">
+          <div className="kiosk-code-display mb-5 flex h-[88px] items-center justify-center overflow-hidden rounded-3xl border-2 border-gray-300 bg-gray-50 px-4 shadow-inner">
+            <div className="flex items-center justify-center font-mono text-[44px] font-bold tracking-[0.18em] text-gray-950">
+              <span className="mr-1 text-[#f03861]">ARX-</span>
               {code ? (
                 code.split('').map((digit, index) => (
-                  <span key={`${digit}-${index}`} className="inline-block w-6 text-center">{digit}</span>
+                  <span key={`${digit}-${index}`} className="inline-block w-6 text-center">
+                    {digit}
+                  </span>
                 ))
               ) : (
-                <span className="text-gray-400 tracking-[0.25em]">------</span>
+                <span className="tracking-[0.25em] text-gray-400">------</span>
               )}
             </div>
           </div>
 
           {error && (
-            <div className="text-red-700 text-center text-base mb-4 font-semibold bg-red-50 py-3 rounded-2xl border border-red-200 shadow-sm">
+            <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 py-3 text-center text-base font-semibold text-red-700 shadow-sm">
               {error}
             </div>
           )}
 
-          <div className="kiosk-keypad-grid grid grid-cols-3 gap-3 sm:gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
+          <div className="kiosk-keypad-grid grid grid-cols-3 gap-3 select-none">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
               <Button
                 key={num}
                 variant="outline"
-                className="h-16 sm:h-20 text-4xl font-semibold rounded-2xl border-2 border-gray-300 bg-white text-gray-950 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
+                className="h-[72px] rounded-2xl border-2 border-gray-300 bg-white text-[34px] font-semibold text-gray-950 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
                 onClick={() => handleKeyPress(num.toString())}
               >
                 {num}
@@ -111,27 +113,27 @@ export const CodeEntry = () => {
             ))}
             <Button
               variant="outline"
-              className="h-16 sm:h-20 text-4xl font-semibold rounded-2xl border-2 border-gray-300 bg-white text-gray-950 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
+              className="h-[72px] rounded-2xl border-2 border-gray-300 bg-white text-[34px] font-semibold text-gray-950 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
               onClick={() => handleKeyPress('0')}
             >
               0
             </Button>
             <Button
               variant="outline"
-              className="h-16 sm:h-20 text-xl col-span-2 rounded-2xl bg-gray-100 border-gray-300 text-gray-800 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
+              className="h-[72px] col-span-2 rounded-2xl border-2 border-gray-300 bg-gray-100 text-[18px] text-gray-800 shadow-[0_4px_12px_rgba(17,24,39,0.08)]"
               onClick={handleDelete}
             >
-              <Delete className="w-8 h-8" />
+              <Delete className="h-8 w-8" />
             </Button>
           </div>
 
           <Button
             size="xl"
-            className="w-full mt-6 rounded-2xl h-20 text-2xl font-bold border border-[#b91c1c] shadow-[0_14px_28px_rgba(240,56,97,0.24)]"
+            className="mt-6 h-[76px] w-full rounded-2xl border border-[#b91c1c] text-[24px] font-bold shadow-[0_14px_28px_rgba(240,56,97,0.24)]"
             disabled={code.length < CODE_LENGTH || loading}
             onClick={handleSubmit}
           >
-            {loading ? <Loader2 className="w-10 h-10 animate-spin" /> : 'Confirm'}
+            {loading ? <Loader2 className="h-10 w-10 animate-spin" /> : 'Confirm'}
           </Button>
         </div>
       </div>

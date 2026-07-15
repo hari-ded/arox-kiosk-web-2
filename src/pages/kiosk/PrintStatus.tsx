@@ -129,24 +129,24 @@ export const PrintStatus = () => {
   }
 
   return (
-    <div className="kiosk-screen flex-1 flex flex-col items-center justify-center p-6 relative z-10">
-      <Card className="kiosk-panel w-full max-w-2xl p-16 text-center shadow-2xl border-0 overflow-hidden relative bg-white/95 backdrop-blur-xl rounded-[3rem]">
+    <div className="kiosk-screen relative z-10 flex h-full w-full flex-1 items-center justify-center p-6">
+      <Card className="kiosk-panel relative w-full max-w-[760px] overflow-hidden rounded-[3rem] border-0 bg-white/95 p-14 text-center shadow-2xl backdrop-blur-xl">
         {status === 'printing' && (
-          <div className="space-y-10 flex flex-col items-center">
-            <div className="w-40 h-40 bg-[#fff7ed] rounded-full flex items-center justify-center relative">
-              <Printer className="w-20 h-20 text-[#f5a623] animate-pulse relative z-10" />
-              <svg className="absolute inset-0 w-full h-full animate-spin text-[#f03861]" viewBox="0 0 100 100">
+          <div className="flex flex-col items-center space-y-10">
+            <div className="relative flex h-40 w-40 items-center justify-center rounded-full bg-[#fff7ed]">
+              <Printer className="relative z-10 h-20 w-20 animate-pulse text-[#f5a623]" />
+              <svg className="absolute inset-0 h-full w-full animate-spin text-[#f03861]" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="4" strokeDasharray="150" strokeLinecap="round" />
               </svg>
             </div>
 
-            <div className="space-y-4 w-full">
-              <h2 className="text-5xl font-extrabold tracking-tight text-gray-950">Printing...</h2>
-              <p className="text-2xl text-gray-600 font-medium">Please wait while your document prints.</p>
+            <div className="w-full space-y-4">
+              <h2 className="text-[44px] font-extrabold tracking-tight text-gray-950">Printing...</h2>
+              <p className="text-[22px] font-medium text-gray-600">Please wait while your document prints.</p>
 
-              <div className="w-full bg-gray-100 h-6 rounded-full mt-10 overflow-hidden shadow-inner">
+              <div className="mt-8 h-6 w-full overflow-hidden rounded-full bg-gray-100 shadow-inner">
                 <div
-                  className="bg-gradient-to-r from-[#f5a623] to-[#f03861] h-full rounded-full transition-all duration-500 ease-out"
+                  className="h-full rounded-full bg-gradient-to-r from-[#f5a623] to-[#f03861] transition-all duration-500 ease-out"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -155,34 +155,34 @@ export const PrintStatus = () => {
         )}
 
         {status === 'completed' && (
-          <div className="space-y-10 flex flex-col items-center animate-in fade-in zoom-in duration-200">
-            <div className="w-40 h-40 bg-green-50 text-green-500 rounded-full flex items-center justify-center shadow-inner">
-              <CheckCircle2 className="w-24 h-24" />
+          <div className="flex flex-col items-center space-y-10 animate-in fade-in zoom-in duration-200">
+            <div className="flex h-40 w-40 items-center justify-center rounded-full bg-green-50 text-green-500 shadow-inner">
+              <CheckCircle2 className="h-24 w-24" />
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-5xl font-extrabold tracking-tight text-gray-950">Success!</h2>
-              <p className="text-2xl text-gray-600 font-medium">Your document has been printed.<br />Please collect your pages.</p>
+              <h2 className="text-[44px] font-extrabold tracking-tight text-gray-950">Success!</h2>
+              <p className="text-[22px] font-medium text-gray-600">Your document has been printed.<br />Please collect your pages.</p>
             </div>
 
-            <Button size="xl" className="mt-10 rounded-full px-16 h-20 text-2xl font-bold" onClick={() => navigate('/')}>
+            <Button size="xl" className="mt-8 h-[76px] rounded-full px-16 text-[24px] font-bold" onClick={() => navigate('/')}>
               Finish
             </Button>
           </div>
         )}
 
         {status === 'failed' && (
-          <div className="space-y-10 flex flex-col items-center animate-in fade-in zoom-in duration-200">
-            <div className="w-40 h-40 bg-red-50 text-[#f03861] rounded-full flex items-center justify-center shadow-inner">
-              <AlertCircle className="w-24 h-24" />
+          <div className="flex flex-col items-center space-y-10 animate-in fade-in zoom-in duration-200">
+            <div className="flex h-40 w-40 items-center justify-center rounded-full bg-red-50 text-[#f03861] shadow-inner">
+              <AlertCircle className="h-24 w-24" />
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-5xl font-extrabold tracking-tight text-gray-950">Print Failed</h2>
-              <p className="text-2xl text-gray-600 font-medium">There was an issue printing your document.<br />Please contact support.</p>
+              <h2 className="text-[44px] font-extrabold tracking-tight text-gray-950">Print Failed</h2>
+              <p className="text-[22px] font-medium text-gray-600">There was an issue printing your document.<br />Please contact support.</p>
             </div>
 
-            <Button size="xl" variant="outline" className="mt-10 rounded-full px-16 h-20 text-2xl font-bold" onClick={() => navigate('/')}>
+            <Button size="xl" variant="outline" className="mt-8 h-[76px] rounded-full px-16 text-[24px] font-bold" onClick={() => navigate('/')}>
               Return Home
             </Button>
           </div>
@@ -191,5 +191,3 @@ export const PrintStatus = () => {
     </div>
   );
 };
-
-
