@@ -3,7 +3,6 @@ import { useLocation, Outlet, useNavigate } from 'react-router-dom';
 import { Volume2, VolumeX } from 'lucide-react';
 import { SupportOverlay } from '../components/SupportOverlay';
 import { Button } from '../components/Button';
-import { KioskBrandMark } from '../components/KioskBrandMark';
 import { toggleKioskSoundEnabled, useKioskSoundEnabled } from '../utils/audio';
 
 const IDLE_TIMEOUT_MS = 55_000;
@@ -63,7 +62,9 @@ export const KioskLayout = () => {
       <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-60"></div>
 
       <header className="kiosk-header relative z-20 flex h-[84px] items-center justify-between gap-4 px-6 pt-4">
-        <KioskBrandMark />
+        <div className="flex h-[36px] items-center">
+          <span className="text-[13px] font-semibold uppercase tracking-[0.24em] text-gray-400">PrintEZ Kiosk</span>
+        </div>
 
         <Button
           type="button"
