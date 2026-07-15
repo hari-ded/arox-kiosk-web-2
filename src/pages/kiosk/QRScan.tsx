@@ -19,7 +19,7 @@ export const QRScan = () => {
     const startScanner = async () => {
       try {
         await scannerRef.current?.start(
-          { facingMode: 'user' },
+          { facingMode: 'environment' },
           {
             fps: 30,
             qrbox: { width: 350, height: 350 },
@@ -85,11 +85,11 @@ export const QRScan = () => {
   }, [navigate]);
 
   return (
-    <div className="kiosk-screen kiosk-screen--scan flex-1 flex flex-col items-center justify-center p-6 bg-black">
+    <div className="flex-1 flex flex-col items-center justify-center p-6 bg-black">
       <Button 
         variant="ghost" 
         size="lg"
-        className="kiosk-screen__back absolute top-24 left-6 text-white hover:text-white/80 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full px-6"
+        className="absolute top-24 left-6 text-white hover:text-white/80 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full px-6"
         onClick={() => navigate('/')}
       >
         <ChevronLeft className="w-8 h-8 mr-2" />
@@ -98,12 +98,12 @@ export const QRScan = () => {
 
       <div className="w-full max-w-2xl flex flex-col items-center space-y-8">
         <div className="text-center space-y-4">
-          <h2 className="kiosk-panel__title text-4xl font-bold tracking-tight text-white">Scan QR Code</h2>
-          <p className="kiosk-panel__subtitle text-xl text-gray-300">Hold your code up to the camera</p>
+          <h2 className="text-4xl font-bold tracking-tight text-white">Scan QR Code</h2>
+          <p className="text-xl text-gray-300">Hold your code up to the camera</p>
         </div>
 
-        <div className="kiosk-scan-frame relative w-full aspect-square max-w-md rounded-3xl overflow-hidden bg-gray-900 border-4 border-gray-800 shadow-2xl">
-          <div id="qr-reader" className="kiosk-scan-frame__reader w-full h-full object-cover"></div>
+        <div className="relative w-full aspect-square max-w-md rounded-3xl overflow-hidden bg-gray-900 border-4 border-gray-800 shadow-2xl">
+          <div id="qr-reader" className="w-full h-full object-cover"></div>
 
           {loading && (
              <div className="absolute inset-0 bg-black/80 flex items-center justify-center flex-col z-20">
@@ -112,7 +112,7 @@ export const QRScan = () => {
              </div>
           )}
 
-          <div className="kiosk-scan-frame__overlay absolute inset-0 border-[40px] border-black/50 z-10 pointer-events-none">
+          <div className="absolute inset-0 border-[40px] border-black/50 z-10 pointer-events-none">
             <div className="w-full h-full border-4 border-[#f5a623]/50 relative">
                <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-[#f5a623] -ml-1 -mt-1"></div>
                <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-[#f5a623] -mr-1 -mt-1"></div>
@@ -123,7 +123,7 @@ export const QRScan = () => {
         </div>
 
         {error && (
-          <div className="kiosk-message bg-red-500/10 border border-red-500/50 text-red-400 text-lg py-4 px-8 rounded-2xl font-medium max-w-md w-full text-center">
+          <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-lg py-4 px-8 rounded-2xl font-medium max-w-md w-full text-center">
             {error}
           </div>
         )}
@@ -131,3 +131,5 @@ export const QRScan = () => {
     </div>
   );
 };
+
+

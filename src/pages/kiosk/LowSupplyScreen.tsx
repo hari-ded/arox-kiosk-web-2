@@ -125,52 +125,52 @@ export const LowSupplyScreen: React.FC<LowSupplyScreenProps> = ({ initialConsuma
 
   if (loading) {
     return (
-      <div className="kiosk-screen flex-1 flex items-center justify-center p-6 relative z-10">
-        <Card className="kiosk-card w-full max-w-xl p-8 sm:p-10 rounded-[2.5rem] border-0 shadow-2xl bg-white/95 backdrop-blur-xl text-center">
+      <div className="flex-1 flex items-center justify-center p-6 relative z-10">
+        <Card className="w-full max-w-2xl p-10 sm:p-14 rounded-[3rem] border-0 shadow-2xl bg-white/95 backdrop-blur-xl text-center">
           <Loader2 className="w-14 h-14 animate-spin mx-auto text-[#f03861]" />
-          <h2 className="kiosk-panel__title mt-6 text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">Checking consumables...</h2>
-          <p className="kiosk-panel__subtitle mt-3 text-lg sm:text-xl text-gray-600">Please wait while we confirm the printer is ready.</p>
+          <h2 className="mt-6 text-4xl font-bold tracking-tight text-gray-950">Checking consumables...</h2>
+          <p className="mt-3 text-xl text-gray-600">Please wait while we confirm the printer is ready.</p>
         </Card>
       </div>
     );
   }
 
   return (
-    <div className="kiosk-screen flex-1 flex items-center justify-center p-6 relative z-10">
+    <div className="flex-1 flex items-center justify-center p-6 relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.35 }}
-        className="w-full max-w-[46rem]"
+        className="w-full max-w-3xl"
       >
-        <Card className="kiosk-card overflow-hidden rounded-[2.5rem] border-0 shadow-2xl bg-white/95 backdrop-blur-xl">
-          <div className="kiosk-panel__header bg-gradient-to-r from-[#fff7ed] via-[#fff4f0] to-[#fff1f4] px-5 py-6 sm:px-8 sm:py-8 border-b border-gray-100">
-            <div className="flex items-start gap-4 sm:gap-5">
-              <div className="kiosk-hero-icon kiosk-hero-icon--danger shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-red-50 text-[#f03861] flex items-center justify-center shadow-inner">
-                <AlertTriangle className="w-8 h-8 sm:w-10 sm:h-10" />
+        <Card className="overflow-hidden rounded-[3rem] border-0 shadow-2xl bg-white/95 backdrop-blur-xl">
+          <div className="bg-gradient-to-r from-[#fff7ed] via-[#fff4f0] to-[#fff1f4] px-6 py-8 sm:px-10 sm:py-12 border-b border-gray-100">
+            <div className="flex items-start gap-5 sm:gap-6">
+              <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-red-50 text-[#f03861] flex items-center justify-center shadow-inner">
+                <AlertTriangle className="w-10 h-10 sm:w-12 sm:h-12" />
               </div>
               <div className="space-y-3">
-                <h2 className="kiosk-panel__title text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-950">{headline}</h2>
-                <p className="kiosk-panel__subtitle text-lg sm:text-xl text-gray-700 leading-relaxed max-w-xl">{message}</p>
+                <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-950">{headline}</h2>
+                <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed max-w-2xl">{message}</p>
               </div>
             </div>
           </div>
 
-          <div className="px-5 py-6 sm:px-8 sm:py-8 space-y-5">
-            <div className="kiosk-status-grid grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="kiosk-status-tile rounded-3xl border border-gray-100 bg-gray-50 p-4">
-                <div className="kiosk-status-label text-sm font-semibold uppercase tracking-wider text-gray-500">Paper Remaining</div>
-                <div className="kiosk-status-value mt-2 text-3xl sm:text-4xl font-bold text-gray-950">{paperRemaining}</div>
+          <div className="px-6 py-8 sm:px-10 sm:py-10 space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="rounded-3xl border border-gray-100 bg-gray-50 p-5">
+                <div className="text-sm font-semibold uppercase tracking-wider text-gray-500">Paper Remaining</div>
+                <div className="mt-2 text-4xl font-bold text-gray-950">{paperRemaining}</div>
                 <div className="mt-1 text-sm text-gray-500">of {paperCapacity || '-'}</div>
               </div>
-              <div className="kiosk-status-tile rounded-3xl border border-gray-100 bg-gray-50 p-4">
-                <div className="kiosk-status-label text-sm font-semibold uppercase tracking-wider text-gray-500">Toner Remaining</div>
-                <div className="kiosk-status-value mt-2 text-3xl sm:text-4xl font-bold text-gray-950">{tonerRemaining}</div>
+              <div className="rounded-3xl border border-gray-100 bg-gray-50 p-5">
+                <div className="text-sm font-semibold uppercase tracking-wider text-gray-500">Toner Remaining</div>
+                <div className="mt-2 text-4xl font-bold text-gray-950">{tonerRemaining}</div>
                 <div className="mt-1 text-sm text-gray-500">of {tonerCapacity || '-'}</div>
               </div>
             </div>
 
-            <div className="kiosk-status-pill rounded-3xl border border-dashed border-[#f5a623]/30 bg-[#fffaf3] px-4 py-3 text-gray-700 text-base">
+            <div className="rounded-3xl border border-dashed border-[#f5a623]/30 bg-[#fffaf3] px-5 py-4 text-gray-700 text-lg">
               Service has been alerted and will be there in a few minutes. Sorry for the inconvenience.
             </div>
 
@@ -183,7 +183,7 @@ export const LowSupplyScreen: React.FC<LowSupplyScreenProps> = ({ initialConsuma
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="xl"
-                className="w-full flex-1 rounded-2xl h-14 sm:h-16 text-lg font-bold"
+                className="flex-1 rounded-2xl h-16 text-xl font-bold"
                 onClick={handleCallService}
                 disabled={alerting}
               >
