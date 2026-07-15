@@ -5,7 +5,7 @@ import { Button } from '../../components/Button';
 import { Card } from '../../components/Card';
 import { PrintJob } from '../../types';
 import { checkJobStatus } from '../../services/api';
-import { playVoiceAsset } from '../../utils/audio';
+import { playSuccessChime, playVoiceAsset } from '../../utils/audio';
 
 export const PrintStatus = () => {
   const navigate = useNavigate();
@@ -81,6 +81,7 @@ export const PrintStatus = () => {
           setProgress(100);
           setStatus('completed');
           playVoiceAsset('printComplete');
+          playSuccessChime();
           window.setTimeout(() => playVoiceAsset('thankYou'), 12000);
           window.setTimeout(() => navigate('/'), 8000);
           return;
@@ -154,7 +155,7 @@ export const PrintStatus = () => {
         )}
 
         {status === 'completed' && (
-          <div className="space-y-10 flex flex-col items-center animate-in fade-in zoom-in duration-500">
+          <div className="space-y-10 flex flex-col items-center animate-in fade-in zoom-in duration-200">
             <div className="w-40 h-40 bg-green-50 text-green-500 rounded-full flex items-center justify-center shadow-inner">
               <CheckCircle2 className="w-24 h-24" />
             </div>
@@ -171,7 +172,7 @@ export const PrintStatus = () => {
         )}
 
         {status === 'failed' && (
-          <div className="space-y-10 flex flex-col items-center animate-in fade-in zoom-in duration-500">
+          <div className="space-y-10 flex flex-col items-center animate-in fade-in zoom-in duration-200">
             <div className="w-40 h-40 bg-red-50 text-[#f03861] rounded-full flex items-center justify-center shadow-inner">
               <AlertCircle className="w-24 h-24" />
             </div>
@@ -190,3 +191,4 @@ export const PrintStatus = () => {
     </div>
   );
 };
+

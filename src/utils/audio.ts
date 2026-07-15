@@ -1,7 +1,60 @@
-export const KIOSK_CONFIG = {
-  enableVoice: true,
-  enableClickSound: true,
+import { useSyncExternalStore } from 'react';
+
+const SOUND_STORAGE_KEY = 'arox:kiosk-sound-enabled';
+const DEFAULT_SOUND_ENABLED = (import.meta.env.VITE_KIOSK_SOUND_ENABLED ?? 'true') !== 'false';
+
+const readStoredSoundSetting = () => {
+  if (typeof window === 'undefined') {
+    return DEFAULT_SOUND_ENABLED;
+  }
+
+  try {
+    const stored = window.localStorage.getItem(SOUND_STORAGE_KEY);
+    if (stored === null) return DEFAULT_SOUND_ENABLED;
+    return stored === 'true';
+  } catch {
+    return DEFAULT_SOUND_ENABLED;
+  }
 };
+
+let kioskSoundEnabled = readStoredSoundSetting();
+const soundListeners = new Set<() => void>();
+
+const notifySoundListeners = () => {
+  soundListeners.forEach((listener) => listener());
+};
+
+const setStoredSoundSetting = (enabled: boolean) => {
+  kioskSoundEnabled = enabled;
+
+  try {
+    window.localStorage.setItem(SOUND_STORAGE_KEY, String(enabled));
+  } catch {
+    // Persisting sound state is best-effort only.
+  }
+
+  notifySoundListeners();
+};
+
+export const isKioskSoundEnabled = () => kioskSoundEnabled;
+
+export const setKioskSoundEnabled = (enabled: boolean) => {
+  setStoredSoundSetting(enabled);
+};
+
+export const toggleKioskSoundEnabled = () => {
+  setStoredSoundSetting(!kioskSoundEnabled);
+};
+
+export const useKioskSoundEnabled = () =>
+  useSyncExternalStore(
+    (listener) => {
+      soundListeners.add(listener);
+      return () => soundListeners.delete(listener);
+    },
+    () => kioskSoundEnabled,
+    () => DEFAULT_SOUND_ENABLED,
+  );
 
 const VOICE_SOURCES = {
   pickup: '/assets/voice/pickup.mp3',
@@ -33,7 +86,7 @@ const ensureAudioContext = () => {
 };
 
 const playVoiceAsset = (key: VoiceKey) => {
-  if (!KIOSK_CONFIG.enableVoice) return;
+  if (!kioskSoundEnabled) return;
 
   try {
     const now = Date.now();
@@ -62,7 +115,7 @@ const playVoiceAsset = (key: VoiceKey) => {
 };
 
 const playTone = (frequencies: number[], duration = 0.12, spacing = 0.05) => {
-  if (!KIOSK_CONFIG.enableVoice && !KIOSK_CONFIG.enableClickSound) return;
+  if (!kioskSoundEnabled) return;
 
   try {
     const ctx = ensureAudioContext();
@@ -92,7 +145,7 @@ const playTone = (frequencies: number[], duration = 0.12, spacing = 0.05) => {
 };
 
 export const playClickSound = () => {
-  if (!KIOSK_CONFIG.enableVoice && !KIOSK_CONFIG.enableClickSound) return;
+  if (!kioskSoundEnabled) return;
 
   try {
     const ctx = ensureAudioContext();
@@ -127,7 +180,7 @@ const voiceTextMap: Array<{ match: RegExp; key: VoiceKey }> = [
 ];
 
 export const playVoiceMessage = (text: string) => {
-  if (!KIOSK_CONFIG.enableVoice) return;
+  if (!kioskSoundEnabled) return;
 
   const matched = voiceTextMap.find((entry) => entry.match.test(text));
   if (matched) {
@@ -137,6 +190,36 @@ export const playVoiceMessage = (text: string) => {
 
 export const playErrorTone = () => {
   playTone([420, 360, 300], 0.11, 0.08);
+};
+
+export const playSuccessChime = () => {
+  if (!kioskSoundEnabled) return;
+
+  try {
+    const ctx = ensureAudioContext();
+    const notes = [523, 659, 784];
+
+    notes.forEach((frequency, index) => {
+      const startAt = ctx.currentTime + index * 0.09;
+      const oscillator = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(frequency, startAt);
+
+      gainNode.gain.setValueAtTime(0.001, startAt);
+      gainNode.gain.exponentialRampToValueAtTime(0.04, startAt + 0.015);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, startAt + 0.08);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(ctx.destination);
+
+      oscillator.start(startAt);
+      oscillator.stop(startAt + 0.1);
+    });
+  } catch (error) {
+    console.warn('Success chime play failed', error);
+  }
 };
 
 export { playVoiceAsset };

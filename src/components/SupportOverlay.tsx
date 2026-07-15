@@ -173,7 +173,7 @@ export const SupportOverlay: React.FC = () => {
     return (
       <div className="fixed bottom-8 left-8 z-50 pointer-events-auto">
         <button 
-          className="bg-white hover:bg-gray-50 border border-gray-100 shadow-sm rounded-full py-3 px-6 flex items-center space-x-3 transition-colors"
+          className="bg-white hover:bg-gray-50 border border-gray-100 shadow-sm rounded-full py-3 px-6 min-h-[60px] flex items-center space-x-3 transition-colors"
           onClick={() => { playClickSound(); setIsOpen(true); setCallState('selecting_category'); }}
         >
           <div className="bg-[#f03861] text-white p-1.5 rounded-full">
@@ -195,7 +195,7 @@ export const SupportOverlay: React.FC = () => {
           <div className="p-8">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-semibold">Need Help?</h2>
-              <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)} className="rounded-full h-12 w-12 p-0">
+              <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)} className="rounded-full w-[60px] px-0">
                 <X className="w-6 h-6" />
               </Button>
             </div>
@@ -300,3 +300,4 @@ export const SupportOverlay: React.FC = () => {
     </div>
   );
 };
+
