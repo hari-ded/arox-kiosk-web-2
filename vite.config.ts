@@ -1,11 +1,15 @@
 import tailwindcss from '@tailwindcss/vite';
+<<<<<<< HEAD
 import legacy from '@vitejs/plugin-legacy';
+=======
+>>>>>>> e0c84d9 (done)
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+<<<<<<< HEAD
     plugins: [
       react(),
       tailwindcss(),
@@ -14,6 +18,9 @@ export default defineConfig(() => {
         modernPolyfills: true,
       }),
     ],
+=======
+    plugins: [react(), tailwindcss()],
+>>>>>>> e0c84d9 (done)
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

@@ -172,11 +172,19 @@ export const PrintConfirmation = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="kiosk-screen flex-1 flex flex-col items-center justify-center p-6 relative z-10">
       <Button
         variant="ghost"
         size="lg"
         className="kiosk-screen__back absolute top-24 left-6 text-gray-700 hover:text-gray-950 bg-white/70 hover:bg-white/90 backdrop-blur-md rounded-full px-6 shadow-sm border border-gray-200/60"
+=======
+    <div className="flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+      <Button
+        variant="ghost"
+        size="lg"
+        className="absolute top-24 left-6 text-gray-700 hover:text-gray-950 bg-white/70 hover:bg-white/90 backdrop-blur-md rounded-full px-6 shadow-sm border border-gray-200/60"
+>>>>>>> e0c84d9 (done)
         onClick={() => navigate('/')}
         disabled={loading}
       >
@@ -184,6 +192,7 @@ export const PrintConfirmation = () => {
         Cancel
       </Button>
 
+<<<<<<< HEAD
       <div className="w-full max-w-[46rem] space-y-4 sm:space-y-5 mt-2">
         <div className="text-center space-y-1 text-gray-900">
           <h2 className="kiosk-panel__title text-3xl sm:text-4xl font-bold tracking-tight drop-shadow-sm">Confirm Print Job</h2>
@@ -201,11 +210,31 @@ export const PrintConfirmation = () => {
                   {job.filename}
                 </h3>
                 <div className="mt-1 text-sm sm:text-base text-gray-500 font-mono">
+=======
+      <div className="w-full max-w-2xl space-y-4 mt-4">
+        <div className="text-center space-y-1 text-gray-900">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight drop-shadow-sm">Confirm Print Job</h2>
+          <p className="text-xl text-gray-600">Review your document details before printing</p>
+        </div>
+
+        {!needsOtp ? (
+          <Card className="overflow-hidden border-0 shadow-2xl bg-white/95 backdrop-blur-xl rounded-3xl">
+            <div className="bg-gradient-to-r from-[#fff7ed] to-[#fff1f4] p-6 border-b border-gray-100 flex items-start space-x-6">
+              <div className="p-3 bg-white rounded-2xl text-[#f03861] shadow-sm border border-[#f5a623]/15">
+                <FileText className="w-10 h-10" />
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <h3 className="text-xl font-semibold text-gray-900 truncate" title={job.filename}>
+                  {job.filename}
+                </h3>
+                <div className="mt-1 text-base text-gray-500 font-mono">
+>>>>>>> e0c84d9 (done)
                   Code: {job.pickup_code || String(job.id).toUpperCase()}
                 </div>
               </div>
             </div>
 
+<<<<<<< HEAD
             <CardContent className="p-5 sm:p-6">
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div className="kiosk-status-tile bg-white rounded-2xl p-3 sm:p-4 border border-gray-100 shadow-sm">
@@ -225,13 +254,38 @@ export const PrintConfirmation = () => {
                 <div className="kiosk-status-tile bg-white rounded-2xl p-3 sm:p-4 border border-gray-100 shadow-sm">
                   <div className="kiosk-status-label text-gray-500 text-xs sm:text-sm font-medium mb-1">Estimated Time</div>
                   <div className="text-lg sm:text-xl font-semibold text-gray-900 mt-1">
+=======
+            <CardContent className="p-6">
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+                  <div className="text-gray-500 text-sm font-medium mb-1">Total Pages</div>
+                  <div className="text-3xl font-semibold text-gray-900">{job.pages || '-'}</div>
+                </div>
+                <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+                  <div className="text-gray-500 text-sm font-medium mb-1">Copies</div>
+                  <div className="text-3xl font-semibold text-gray-900">{job.copies || '-'}</div>
+                </div>
+                <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+                  <div className="text-gray-500 text-sm font-medium mb-1">Color Mode</div>
+                  <div className="text-xl font-semibold text-gray-900 mt-1">
+                    {job.color ? 'Full Color' : 'Black & White'}
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+                  <div className="text-gray-500 text-sm font-medium mb-1">Estimated Time</div>
+                  <div className="text-xl font-semibold text-gray-900 mt-1">
+>>>>>>> e0c84d9 (done)
                     {job.estimated_time_seconds ? `${Math.ceil(job.estimated_time_seconds / 60)} min` : '-'}
                   </div>
                 </div>
               </div>
 
               {error && (
+<<<<<<< HEAD
                 <div className="kiosk-message flex items-center space-x-3 bg-red-50 text-red-700 p-3 rounded-xl mb-4 border border-red-100">
+=======
+                <div className="flex items-center space-x-3 bg-red-50 text-red-700 p-3 rounded-xl mb-4 border border-red-100">
+>>>>>>> e0c84d9 (done)
                   <AlertTriangle className="w-5 h-5 shrink-0" />
                   <span className="font-medium text-base">{error}</span>
                 </div>
@@ -253,6 +307,7 @@ export const PrintConfirmation = () => {
             </CardContent>
           </Card>
         ) : (
+<<<<<<< HEAD
           <Card className="kiosk-card overflow-hidden border-0 shadow-2xl bg-white/95 backdrop-blur-xl rounded-3xl">
             <div className="kiosk-panel__header p-5 sm:p-6 border-b border-gray-100 bg-gradient-to-r from-[#fff7ed] to-[#fff1f4]">
               <div className="flex items-center gap-3 sm:gap-4">
@@ -262,20 +317,42 @@ export const PrintConfirmation = () => {
                 <div>
                   <h3 className="kiosk-panel__title text-xl sm:text-2xl font-bold text-gray-900">Enter OTP</h3>
                   <p className="kiosk-panel__subtitle text-gray-600">Use the keypad below to enter the 6-digit code sent to {job.email}</p>
+=======
+          <Card className="overflow-hidden border-0 shadow-2xl bg-white/95 backdrop-blur-xl rounded-3xl">
+            <div className="p-6 sm:p-8 border-b border-gray-100 bg-gradient-to-r from-[#fff7ed] to-[#fff1f4]">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-white rounded-2xl text-[#f03861] shadow-sm border border-[#f5a623]/15">
+                  <KeyRound className="w-10 h-10" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900">Enter OTP</h3>
+                  <p className="text-gray-600">Use the keypad below to enter the 6-digit code sent to {job.email}</p>
+>>>>>>> e0c84d9 (done)
                 </div>
               </div>
             </div>
 
+<<<<<<< HEAD
             <CardContent className="p-5 sm:p-6">
               <div className="space-y-6">
                 <div className="kiosk-code-display rounded-3xl border-2 border-dashed border-gray-200 bg-gray-50 px-3 py-5 sm:px-4 sm:py-5 text-center select-none">
                   <div className="font-mono text-3xl sm:text-4xl font-semibold text-gray-900 min-h-12 flex items-center justify-center gap-2 sm:gap-3">
+=======
+            <CardContent className="p-6 sm:p-8">
+              <div className="space-y-6">
+                <div className="rounded-3xl border-2 border-dashed border-gray-200 bg-gray-50 px-4 py-6 text-center select-none">
+                  <div className="font-mono text-4xl font-semibold text-gray-900 min-h-12 flex items-center justify-center gap-3">
+>>>>>>> e0c84d9 (done)
                     {Array.from({ length: OTP_LENGTH }).map((_, index) => {
                       const digit = otp[index];
                       return (
                         <span
                           key={`slot-${index}`}
+<<<<<<< HEAD
                           className="inline-flex w-9 h-11 items-center justify-center rounded-xl border-2 border-gray-200 bg-white text-gray-900"
+=======
+                          className="inline-flex w-10 h-12 items-center justify-center rounded-xl border-2 border-gray-200 bg-white text-gray-900"
+>>>>>>> e0c84d9 (done)
                         >
                           {digit || ''}
                         </span>
@@ -285,18 +362,30 @@ export const PrintConfirmation = () => {
                 </div>
 
                 {error && (
+<<<<<<< HEAD
                   <div className="kiosk-message flex items-center space-x-3 bg-red-50 text-red-700 p-3 rounded-xl border border-red-100">
+=======
+                  <div className="flex items-center space-x-3 bg-red-50 text-red-700 p-3 rounded-xl border border-red-100">
+>>>>>>> e0c84d9 (done)
                     <AlertTriangle className="w-5 h-5 shrink-0" />
                     <span className="font-medium text-base">{error}</span>
                   </div>
                 )}
 
+<<<<<<< HEAD
                 <div className="kiosk-otp-grid grid-cols-3 gap-3 sm:gap-4 select-none">
+=======
+                <div className="grid grid-cols-3 gap-3 sm:gap-4 select-none">
+>>>>>>> e0c84d9 (done)
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((digit) => (
                     <Button
                       key={digit}
                       variant="outline"
+<<<<<<< HEAD
                       className="h-14 sm:h-16 text-3xl font-semibold rounded-2xl border-2 border-gray-200 bg-white hover:bg-[#fff7ed] hover:border-[#f5a623]/30 shadow-sm"
+=======
+                      className="h-16 sm:h-20 text-4xl font-semibold rounded-2xl border-2 border-gray-200 bg-white hover:bg-[#fff7ed] hover:border-[#f5a623]/30 shadow-sm"
+>>>>>>> e0c84d9 (done)
                       onClick={() => handleOtpDigit(String(digit))}
                       disabled={loading || otp.length >= OTP_LENGTH}
                     >
@@ -305,7 +394,11 @@ export const PrintConfirmation = () => {
                   ))}
                   <Button
                     variant="outline"
+<<<<<<< HEAD
                     className="h-14 sm:h-16 text-3xl font-semibold rounded-2xl border-2 border-gray-200 bg-white hover:bg-[#fff7ed] hover:border-[#f5a623]/30 shadow-sm"
+=======
+                    className="h-16 sm:h-20 text-4xl font-semibold rounded-2xl border-2 border-gray-200 bg-white hover:bg-[#fff7ed] hover:border-[#f5a623]/30 shadow-sm"
+>>>>>>> e0c84d9 (done)
                     onClick={() => handleOtpDigit('0')}
                     disabled={loading || otp.length >= OTP_LENGTH}
                   >
@@ -313,7 +406,11 @@ export const PrintConfirmation = () => {
                   </Button>
                   <Button
                     variant="outline"
+<<<<<<< HEAD
                     className="h-14 sm:h-16 text-lg rounded-2xl bg-gray-100 border-transparent hover:bg-gray-200 hover:border-gray-300 text-gray-700 shadow-sm"
+=======
+                    className="h-16 sm:h-20 text-xl rounded-2xl bg-gray-100 border-transparent hover:bg-gray-200 hover:border-gray-300 text-gray-700 shadow-sm"
+>>>>>>> e0c84d9 (done)
                     onClick={handleOtpDelete}
                     disabled={loading || otp.length === 0}
                   >
@@ -321,7 +418,11 @@ export const PrintConfirmation = () => {
                   </Button>
                   <Button
                     variant="outline"
+<<<<<<< HEAD
                     className="h-14 sm:h-16 text-lg rounded-2xl bg-gray-100 border-transparent hover:bg-gray-200 hover:border-gray-300 text-gray-700 shadow-sm"
+=======
+                    className="h-16 sm:h-20 text-xl rounded-2xl bg-gray-100 border-transparent hover:bg-gray-200 hover:border-gray-300 text-gray-700 shadow-sm"
+>>>>>>> e0c84d9 (done)
                     onClick={handleOtpClear}
                     disabled={loading || otp.length === 0}
                   >
@@ -331,7 +432,11 @@ export const PrintConfirmation = () => {
 
                 <Button
                   size="xl"
+<<<<<<< HEAD
                   className="w-full mt-2 h-14 sm:h-16 rounded-2xl text-xl font-bold"
+=======
+                  className="w-full mt-2 h-16 rounded-2xl text-2xl font-bold"
+>>>>>>> e0c84d9 (done)
                   onClick={handleVerifyOtp}
                   disabled={otp.length < OTP_LENGTH || loading}
                 >
