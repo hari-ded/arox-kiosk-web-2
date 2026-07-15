@@ -61,7 +61,7 @@ export const CodeEntry = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+    <div className="kiosk-screen flex-1 flex flex-col items-center justify-center p-6 relative z-10">
       <Button
         variant="ghost"
         size="lg"
@@ -78,8 +78,8 @@ export const CodeEntry = () => {
           <p className="text-xl text-gray-600 font-medium">Your 6-digit pickup code</p>
         </div>
 
-        <div className="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-6 border border-white shadow-2xl shadow-black/10">
-          <div className="h-20 mb-6 rounded-3xl bg-gray-100/50 border-2 border-gray-200 flex items-center justify-center shadow-inner overflow-hidden px-4">
+        <div className="kiosk-panel bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-6 border border-white shadow-2xl shadow-black/10">
+          <div className="kiosk-code-display h-20 mb-6 rounded-3xl bg-gray-100/50 border-2 border-gray-200 flex items-center justify-center shadow-inner overflow-hidden px-4">
             <div className="flex items-center justify-center font-mono text-gray-900 font-bold text-4xl sm:text-5xl tracking-[0.18em]">
               <span className="text-[#f03861] mr-1">ARX-</span>
               {code ? (
@@ -98,7 +98,7 @@ export const CodeEntry = () => {
             </div>
           )}
 
-          <div className="grid grid-cols-3 gap-3 sm:gap-4">
+          <div className="kiosk-keypad-grid grid grid-cols-3 gap-3 sm:gap-4">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
               <Button
                 key={num}
@@ -138,3 +138,4 @@ export const CodeEntry = () => {
     </div>
   );
 };
+

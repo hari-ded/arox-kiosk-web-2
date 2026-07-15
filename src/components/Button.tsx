@@ -8,6 +8,7 @@ type ButtonSize = 'default' | 'sm' | 'lg' | 'xl';
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  block?: boolean;
 };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -16,6 +17,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant = 'default',
       size = 'default',
+      block = false,
       onClick,
       onPointerDown,
       onPointerUp,
@@ -84,8 +86,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         onPointerLeave={handlePointerLeave}
         onPointerCancel={handlePointerCancel}
         data-pressed={isPressed ? 'true' : undefined}
+        data-variant={variant}
+        data-size={size}
+        data-block={block ? 'true' : undefined}
         className={cn(
-          'inline-flex min-h-[60px] min-w-[60px] items-center justify-center whitespace-nowrap rounded-2xl font-medium ring-offset-background transition-[transform,background-color,border-color,box-shadow,opacity,filter] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f03861]/30 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.97] data-[pressed=true]:scale-[0.97] touch-manipulation select-none [-webkit-user-select:none] [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]',
+          'kiosk-button inline-flex min-h-[60px] min-w-[60px] items-center justify-center whitespace-nowrap rounded-2xl font-medium ring-offset-background transition-[transform,background-color,border-color,box-shadow,opacity,filter] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f03861]/30 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.97] data-[pressed=true]:scale-[0.97] touch-manipulation select-none [-webkit-user-select:none] [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]',
           {
             'bg-gradient-to-r from-[#f5a623] to-[#f03861] text-white shadow-lg shadow-[#f03861]/15': variant === 'default',
             'border-2 border-[#f5a623]/20 bg-white text-gray-900': variant === 'outline',
@@ -95,6 +100,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             'h-[60px] px-4 text-lg': size === 'sm',
             'h-[76px] px-8 text-2xl': size === 'lg',
             'h-[88px] px-10 text-3xl': size === 'xl',
+            'w-full': block,
           },
           className,
         )}

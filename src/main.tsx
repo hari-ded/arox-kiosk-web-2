@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import { applyKioskModeAttribute } from './lib/kioskMode';
 import './index.css';
+import './kiosk-legacy.css';
 
 applyKioskModeAttribute();
 
@@ -14,3 +15,4 @@ createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
   </StrictMode>,
 );
+

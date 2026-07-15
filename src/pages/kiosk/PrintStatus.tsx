@@ -129,8 +129,8 @@ export const PrintStatus = () => {
   }
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-6 relative z-10">
-      <Card className="w-full max-w-2xl p-16 text-center shadow-2xl border-0 overflow-hidden relative bg-white/95 backdrop-blur-xl rounded-[3rem]">
+    <div className="kiosk-screen flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+      <Card className="kiosk-panel w-full max-w-2xl p-16 text-center shadow-2xl border-0 overflow-hidden relative bg-white/95 backdrop-blur-xl rounded-[3rem]">
         {status === 'printing' && (
           <div className="space-y-10 flex flex-col items-center">
             <div className="w-40 h-40 bg-[#fff7ed] rounded-full flex items-center justify-center relative">
@@ -191,4 +191,5 @@ export const PrintStatus = () => {
     </div>
   );
 };
+
 

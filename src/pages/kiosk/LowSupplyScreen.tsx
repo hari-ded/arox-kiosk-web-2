@@ -125,7 +125,7 @@ export const LowSupplyScreen: React.FC<LowSupplyScreenProps> = ({ initialConsuma
 
   if (loading) {
     return (
-      <div className="flex-1 flex items-center justify-center p-6 relative z-10">
+      <div className="kiosk-screen flex-1 flex items-center justify-center p-6 relative z-10">
         <Card className="w-full max-w-2xl p-10 sm:p-14 rounded-[3rem] border-0 shadow-2xl bg-white/95 backdrop-blur-xl text-center">
           <Loader2 className="w-14 h-14 animate-spin mx-auto text-[#f03861]" />
           <h2 className="mt-6 text-4xl font-bold tracking-tight text-gray-950">Checking consumables...</h2>
@@ -136,14 +136,14 @@ export const LowSupplyScreen: React.FC<LowSupplyScreenProps> = ({ initialConsuma
   }
 
   return (
-    <div className="flex-1 flex items-center justify-center p-6 relative z-10">
+    <div className="kiosk-screen flex-1 flex items-center justify-center p-6 relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.35 }}
         className="w-full max-w-3xl"
       >
-        <Card className="overflow-hidden rounded-[3rem] border-0 shadow-2xl bg-white/95 backdrop-blur-xl">
+        <Card className="kiosk-panel overflow-hidden rounded-[3rem] border-0 shadow-2xl bg-white/95 backdrop-blur-xl">
           <div className="bg-gradient-to-r from-[#fff7ed] via-[#fff4f0] to-[#fff1f4] px-6 py-8 sm:px-10 sm:py-12 border-b border-gray-100">
             <div className="flex items-start gap-5 sm:gap-6">
               <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-red-50 text-[#f03861] flex items-center justify-center shadow-inner">
@@ -197,3 +197,4 @@ export const LowSupplyScreen: React.FC<LowSupplyScreenProps> = ({ initialConsuma
     </div>
   );
 };
+

@@ -172,7 +172,7 @@ export const PrintConfirmation = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+    <div className="kiosk-screen flex-1 flex flex-col items-center justify-center p-6 relative z-10">
       <Button
         variant="ghost"
         size="lg"
@@ -191,7 +191,7 @@ export const PrintConfirmation = () => {
         </div>
 
         {!needsOtp ? (
-          <Card className="overflow-hidden border-0 shadow-2xl bg-white/95 backdrop-blur-xl rounded-3xl">
+          <Card className="kiosk-panel overflow-hidden border-0 shadow-2xl bg-white/95 backdrop-blur-xl rounded-3xl">
             <div className="bg-gradient-to-r from-[#fff7ed] to-[#fff1f4] p-6 border-b border-gray-100 flex items-start space-x-6">
               <div className="p-3 bg-white rounded-2xl text-[#f03861] shadow-sm border border-[#f5a623]/15">
                 <FileText className="w-10 h-10" />
@@ -253,7 +253,7 @@ export const PrintConfirmation = () => {
             </CardContent>
           </Card>
         ) : (
-          <Card className="overflow-hidden border-0 shadow-2xl bg-white/95 backdrop-blur-xl rounded-3xl">
+          <Card className="kiosk-panel overflow-hidden border-0 shadow-2xl bg-white/95 backdrop-blur-xl rounded-3xl">
             <div className="p-6 sm:p-8 border-b border-gray-100 bg-gradient-to-r from-[#fff7ed] to-[#fff1f4]">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-white rounded-2xl text-[#f03861] shadow-sm border border-[#f5a623]/15">
@@ -346,3 +346,4 @@ export const PrintConfirmation = () => {
     </div>
   );
 };
+
