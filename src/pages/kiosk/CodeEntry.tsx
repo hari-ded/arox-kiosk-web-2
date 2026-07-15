@@ -72,19 +72,19 @@ export const CodeEntry = () => {
         Back
       </Button>
 
-      <div className="kiosk-screen__content w-full max-w-lg space-y-4 sm:space-y-6 mt-4">
+      <div className="kiosk-screen__content w-full max-w-md space-y-4 sm:space-y-5 mt-2">
         <div className="text-center space-y-2">
-          <h2 className="kiosk-panel__title text-4xl font-extrabold tracking-tight text-gray-950">Enter Code</h2>
-          <p className="kiosk-panel__subtitle text-xl text-gray-600 font-medium">Your 6-digit pickup code</p>
+          <h2 className="kiosk-panel__title text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-950">Enter Code</h2>
+          <p className="kiosk-panel__subtitle text-lg sm:text-xl text-gray-600 font-medium">Your 6-digit pickup code</p>
         </div>
 
-        <div className="kiosk-panel kiosk-card kiosk-panel--code bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-6 border border-white shadow-2xl shadow-black/10">
-          <div className="kiosk-code-display h-20 mb-6 shadow-inner overflow-hidden px-4">
-            <div className="flex items-center justify-center font-mono text-gray-900 font-bold text-4xl sm:text-5xl tracking-[0.18em]">
+        <div className="kiosk-panel kiosk-card kiosk-panel--code bg-white/90 backdrop-blur-xl rounded-[2.25rem] p-5 sm:p-6 border border-white shadow-2xl shadow-black/10">
+          <div className="kiosk-code-display h-16 mb-5 shadow-inner overflow-hidden px-4">
+            <div className="flex items-center justify-center font-mono text-gray-900 font-bold text-3xl sm:text-4xl tracking-[0.16em]">
               <span className="kiosk-code-display__prefix text-[#f03861] mr-1">ARX-</span>
               {code ? (
                 code.split('').map((digit, index) => (
-                  <span key={`${digit}-${index}`} className="inline-block w-6 text-center">{digit}</span>
+                  <span key={`${digit}-${index}`} className="inline-block w-5 text-center">{digit}</span>
                 ))
               ) : (
                 <span className="text-gray-300 tracking-[0.25em]">------</span>
@@ -103,7 +103,7 @@ export const CodeEntry = () => {
               <Button
                 key={num}
                 variant="outline"
-                className="h-16 sm:h-20 text-4xl font-semibold rounded-2xl border-2 border-gray-200 bg-white hover:bg-[#fff7ed] hover:border-[#f5a623]/30 active:bg-[#fff1e1] shadow-sm"
+                className="h-14 sm:h-16 text-3xl font-semibold rounded-2xl border-2 border-gray-200 bg-white hover:bg-[#fff7ed] hover:border-[#f5a623]/30 active:bg-[#fff1e1] shadow-sm"
                 onClick={() => handleKeyPress(num.toString())}
               >
                 {num}
@@ -111,14 +111,14 @@ export const CodeEntry = () => {
             ))}
             <Button
               variant="outline"
-              className="h-16 sm:h-20 text-4xl font-semibold rounded-2xl border-2 border-gray-200 bg-white hover:bg-[#fff7ed] hover:border-[#f5a623]/30 shadow-sm"
+              className="h-14 sm:h-16 text-3xl font-semibold rounded-2xl border-2 border-gray-200 bg-white hover:bg-[#fff7ed] hover:border-[#f5a623]/30 shadow-sm"
               onClick={() => handleKeyPress('0')}
             >
               0
             </Button>
             <Button
               variant="outline"
-              className="h-16 sm:h-20 text-xl col-span-2 rounded-2xl bg-gray-100 border-transparent hover:bg-gray-200 hover:border-gray-300 text-gray-700 shadow-sm"
+              className="h-14 sm:h-16 text-lg col-span-2 rounded-2xl bg-gray-100 border-transparent hover:bg-gray-200 hover:border-gray-300 text-gray-700 shadow-sm"
               onClick={handleDelete}
             >
               <Delete className="w-8 h-8" />

@@ -38,9 +38,16 @@ html[data-kiosk-mode='legacy'] .kiosk-shell__overlay {
 }
 
 html[data-kiosk-mode='legacy'] .kiosk-watermark {
-  top: 16px;
+  top: 14px;
   right: 16px;
   opacity: 0.65;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-watermark img {
+  width: 64px !important;
+  max-width: 64px !important;
+  height: auto !important;
+  object-fit: contain;
 }
 
 html[data-kiosk-mode='legacy'] .kiosk-main {
@@ -50,7 +57,7 @@ html[data-kiosk-mode='legacy'] .kiosk-main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 18px 88px;
+  padding: 28px 24px 96px;
 }
 
 html[data-kiosk-mode='legacy'] .kiosk-footer {
@@ -60,7 +67,7 @@ html[data-kiosk-mode='legacy'] .kiosk-footer {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   padding: 16px 18px 18px;
 }
 
@@ -180,18 +187,18 @@ html[data-kiosk-mode='legacy'] .kiosk-button[data-block='true'] {
 
 html[data-kiosk-mode='legacy'] .kiosk-home {
   width: 100%;
-  max-width: 980px;
+  max-width: 920px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: 14px;
 }
 
 html[data-kiosk-mode='legacy'] .kiosk-home__hero {
   text-align: center;
-  max-width: 780px;
+  max-width: 720px;
 }
 
 html[data-kiosk-mode='legacy'] .kiosk-home__logo {
@@ -231,12 +238,12 @@ html[data-kiosk-mode='legacy'] .kiosk-home__actions {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 14px;
 }
 
 html[data-kiosk-mode='legacy'] .kiosk-home__action {
-  min-height: 170px;
-  padding: 18px 16px;
+  min-height: 160px;
+  padding: 16px 14px;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.97);
   border: 1px solid #ececf1;
@@ -245,7 +252,7 @@ html[data-kiosk-mode='legacy'] .kiosk-home__action {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 html[data-kiosk-mode='legacy'] .kiosk-home__action-icon {
@@ -289,14 +296,14 @@ html[data-kiosk-mode='legacy'] .kiosk-home__action-copy {
 
 html[data-kiosk-mode='legacy'] .kiosk-screen {
   width: 100%;
-  max-width: 840px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
 html[data-kiosk-mode='legacy'] .kiosk-screen__back {
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 14px;
+  left: 14px;
   z-index: 20;
 }
 
@@ -307,7 +314,7 @@ html[data-kiosk-mode='legacy'] .kiosk-panel__header {
 
 html[data-kiosk-mode='legacy'] .kiosk-panel__title {
   color: #111827;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-size: clamp(1.45rem, 2.8vw, 2.1rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   margin: 0;
@@ -315,7 +322,7 @@ html[data-kiosk-mode='legacy'] .kiosk-panel__title {
 
 html[data-kiosk-mode='legacy'] .kiosk-panel__subtitle {
   color: #6b7280;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.35;
   margin: 0;
 }
@@ -378,7 +385,7 @@ html[data-kiosk-mode='legacy'] .kiosk-message {
 html[data-kiosk-mode='legacy'] .kiosk-status-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 html[data-kiosk-mode='legacy'] .kiosk-status-tile {
@@ -509,3 +516,4 @@ html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-sm {
     max-width: 330px;
   }
 }
+

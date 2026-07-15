@@ -9,7 +9,7 @@ const VOICE_SOURCES = {
   printingWait: '/assets/voice/printing_wait.mp3',
   printComplete: '/assets/voice/print_complete.mp3',
   printFailed: '/assets/voice/failed.mp3',
-  otpFailed: '/assets/voice/otp_failed.mp3',
+  otpFailed: '/assets/voice/invalid_code.mp3',
   thankYou: '/assets/voice/thank_you.mp3',
 } as const;
 
@@ -19,6 +19,8 @@ let audioCtx: AudioContext | null = null;
 let activeVoiceAudio: HTMLAudioElement | null = null;
 let lastVoiceKey: VoiceKey | null = null;
 let lastVoiceAt = 0;
+let audioUnlocked = false;
+let queuedVoiceKey: VoiceKey | null = null;
 
 const ensureAudioContext = () => {
   if (!audioCtx) {
@@ -29,7 +31,40 @@ const ensureAudioContext = () => {
     void audioCtx.resume();
   }
 
+  if (audioCtx.state === 'running') {
+    audioUnlocked = true;
+  }
+
   return audioCtx;
+};
+
+const stopActiveVoice = () => {
+  if (activeVoiceAudio) {
+    activeVoiceAudio.pause();
+    activeVoiceAudio.currentTime = 0;
+    activeVoiceAudio = null;
+  }
+};
+
+const flushQueuedVoice = () => {
+  if (!queuedVoiceKey || !audioUnlocked) return;
+
+  const key = queuedVoiceKey;
+  queuedVoiceKey = null;
+  window.setTimeout(() => {
+    void playVoiceAsset(key);
+  }, 0);
+};
+
+export const unlockKioskAudio = () => {
+  audioUnlocked = true;
+  try {
+    ensureAudioContext();
+  } catch (error) {
+    console.warn('Failed to unlock kiosk audio context', error);
+  }
+
+  flushQueuedVoice();
 };
 
 const playVoiceAsset = (key: VoiceKey) => {
@@ -44,19 +79,32 @@ const playVoiceAsset = (key: VoiceKey) => {
     lastVoiceKey = key;
     lastVoiceAt = now;
 
-    if (activeVoiceAudio) {
-      activeVoiceAudio.pause();
-      activeVoiceAudio.currentTime = 0;
-      activeVoiceAudio = null;
+    const ctx = ensureAudioContext();
+    if (!audioUnlocked && ctx.state !== 'running') {
+      queuedVoiceKey = key;
+      return;
     }
 
+    stopActiveVoice();
+
     const audio = new Audio(VOICE_SOURCES[key]);
+    audio.preload = 'auto';
     audio.volume = 1;
+    audio.playbackRate = 1;
     activeVoiceAudio = audio;
+
     audio.play().catch((error) => {
+      queuedVoiceKey = key;
       console.warn(`Failed to play voice asset: ${key}`, error);
     });
+
+    audio.addEventListener('ended', () => {
+      if (activeVoiceAudio === audio) {
+        activeVoiceAudio = null;
+      }
+    }, { once: true });
   } catch (error) {
+    queuedVoiceKey = key;
     console.warn(`Failed to initialize voice asset: ${key}`, error);
   }
 };
@@ -65,6 +113,7 @@ const playTone = (frequencies: number[], duration = 0.12, spacing = 0.05) => {
   if (!KIOSK_CONFIG.enableVoice && !KIOSK_CONFIG.enableClickSound) return;
 
   try {
+    unlockKioskAudio();
     const ctx = ensureAudioContext();
     let startAt = ctx.currentTime;
 
@@ -72,10 +121,10 @@ const playTone = (frequencies: number[], duration = 0.12, spacing = 0.05) => {
       const oscillator = ctx.createOscillator();
       const gainNode = ctx.createGain();
 
-      oscillator.type = 'sine';
+      oscillator.type = 'triangle';
       oscillator.frequency.setValueAtTime(frequency, startAt);
       gainNode.gain.setValueAtTime(0.001, startAt);
-      gainNode.gain.exponentialRampToValueAtTime(0.035, startAt + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.08, startAt + 0.01);
       gainNode.gain.exponentialRampToValueAtTime(0.001, startAt + duration);
 
       oscillator.connect(gainNode);
@@ -95,22 +144,23 @@ export const playClickSound = () => {
   if (!KIOSK_CONFIG.enableVoice && !KIOSK_CONFIG.enableClickSound) return;
 
   try {
+    unlockKioskAudio();
     const ctx = ensureAudioContext();
     const oscillator = ctx.createOscillator();
     const gainNode = ctx.createGain();
 
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(520, ctx.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(640, ctx.currentTime + 0.04);
+    oscillator.type = 'triangle';
+    oscillator.frequency.setValueAtTime(560, ctx.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(760, ctx.currentTime + 0.05);
 
-    gainNode.gain.setValueAtTime(0.05, ctx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.045);
+    gainNode.gain.setValueAtTime(0.12, ctx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
 
     oscillator.connect(gainNode);
     gainNode.connect(ctx.destination);
 
     oscillator.start();
-    oscillator.stop(ctx.currentTime + 0.045);
+    oscillator.stop(ctx.currentTime + 0.06);
   } catch (error) {
     console.warn('Audio play failed', error);
   }
@@ -122,7 +172,7 @@ const voiceTextMap: Array<{ match: RegExp; key: VoiceKey }> = [
   { match: /printing your document|please wait while your document prints/i, key: 'printingWait' },
   { match: /success|please collect your pages|printed/i, key: 'printComplete' },
   { match: /print failed|contact support/i, key: 'printFailed' },
-  { match: /otp failed|invalid otp/i, key: 'otpFailed' },
+  { match: /otp failed|invalid otp|invalid code/i, key: 'otpFailed' },
   { match: /thank you/i, key: 'thankYou' },
 ];
 
@@ -136,6 +186,7 @@ export const playVoiceMessage = (text: string) => {
 };
 
 export const playErrorTone = () => {
+  unlockKioskAudio();
   playTone([420, 360, 300], 0.11, 0.08);
 };
 

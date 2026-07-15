@@ -1,11 +1,27 @@
 import React from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
 import { SupportOverlay } from '../components/SupportOverlay';
+import { unlockKioskAudio } from '../utils/audio';
 import aroxLogo from '../../assets/arox-logo.png';
 
 export const KioskLayout = () => {
   const location = useLocation();
   const showWatermark = location.pathname !== '/';
+
+  React.useEffect(() => {
+    const unlock = () => unlockKioskAudio();
+    const events: Array<keyof WindowEventMap> = ['pointerdown', 'touchstart', 'keydown'];
+
+    events.forEach((eventName) => {
+      window.addEventListener(eventName, unlock, true);
+    });
+
+    return () => {
+      events.forEach((eventName) => {
+        window.removeEventListener(eventName, unlock, true);
+      });
+    };
+  }, []);
 
   return (
     <div className="kiosk-shell relative h-[100dvh] w-full flex flex-col overflow-hidden selection:bg-[#f03861]/20 bg-[#fafafc] text-gray-900 font-sans">
