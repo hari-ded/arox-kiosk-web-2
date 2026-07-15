@@ -11,11 +11,7 @@ import { AgentConsole } from './pages/agent/AgentConsole';
 
 export default function App() {
   return (
-<<<<<<< HEAD
     <div className="kiosk-app min-h-screen bg-gray-50 text-gray-900 font-sans selection:bg-[#f03861]/20">
-=======
-    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans selection:bg-[#f03861]/20">
->>>>>>> e0c84d9 (done)
       <Routes>
         <Route element={<KioskLayout />}>
           <Route path="/" element={<Home />} />

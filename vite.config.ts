@@ -1,15 +1,14 @@
 import tailwindcss from '@tailwindcss/vite';
-<<<<<<< HEAD
 import legacy from '@vitejs/plugin-legacy';
-=======
->>>>>>> e0c84d9 (done)
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import { fileURLToPath } from 'url';
+import { defineConfig } from 'vite';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(() => {
   return {
-<<<<<<< HEAD
     plugins: [
       react(),
       tailwindcss(),
@@ -18,9 +17,6 @@ export default defineConfig(() => {
         modernPolyfills: true,
       }),
     ],
-=======
-    plugins: [react(), tailwindcss()],
->>>>>>> e0c84d9 (done)
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
@@ -28,9 +24,8 @@ export default defineConfig(() => {
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+      // File watching is disabled when HMR is off to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
   };
