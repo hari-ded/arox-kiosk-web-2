@@ -90,12 +90,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         data-size={size}
         data-block={block ? 'true' : undefined}
         className={cn(
-          'kiosk-button inline-flex min-h-[60px] min-w-[60px] items-center justify-center whitespace-nowrap rounded-2xl font-medium ring-offset-background transition-[transform,background-color,border-color,box-shadow,opacity,filter] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f03861]/30 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.97] data-[pressed=true]:scale-[0.97] touch-manipulation select-none [-webkit-user-select:none] [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]',
+          'kiosk-button inline-flex min-h-[60px] min-w-[60px] items-center justify-center whitespace-nowrap rounded-2xl font-semibold ring-offset-background transition-[transform,background-color,border-color,box-shadow,opacity,filter] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f03861]/30 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60 active:scale-[0.97] data-[pressed=true]:scale-[0.97] touch-manipulation select-none [-webkit-user-select:none] [-webkit-touch-callout:none] [-webkit-tap-highlight-color:transparent]',
           {
-            'bg-gradient-to-r from-[#f5a623] to-[#f03861] text-white shadow-lg shadow-[#f03861]/15': variant === 'default',
-            'border-2 border-[#f5a623]/20 bg-white text-gray-900': variant === 'outline',
-            'text-gray-700': variant === 'ghost',
-            'bg-[#f03861] text-white': variant === 'danger',
+            'bg-gradient-to-r from-[#c82c4f] via-[#ee4b6f] to-[#f5a623] text-white shadow-[0_12px_24px_rgba(240,56,97,0.2)]': variant === 'default',
+            'border-2 border-gray-300 bg-white text-gray-950 shadow-[0_4px_12px_rgba(17,24,39,0.08)]': variant === 'outline',
+            'border border-gray-200 bg-gray-100 text-gray-900 shadow-sm': variant === 'ghost',
+            'bg-[#b91c1c] text-white shadow-[0_10px_20px_rgba(185,28,28,0.18)]': variant === 'danger',
             'h-[68px] px-6 text-xl': size === 'default',
             'h-[60px] px-4 text-lg': size === 'sm',
             'h-[76px] px-8 text-2xl': size === 'lg',

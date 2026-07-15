@@ -3,8 +3,8 @@ import { useLocation, Outlet, useNavigate } from 'react-router-dom';
 import { Volume2, VolumeX } from 'lucide-react';
 import { SupportOverlay } from '../components/SupportOverlay';
 import { Button } from '../components/Button';
+import { KioskBrandMark } from '../components/KioskBrandMark';
 import { toggleKioskSoundEnabled, useKioskSoundEnabled } from '../utils/audio';
-import aroxLogo from '../../assets/arox-logo.png';
 
 const IDLE_TIMEOUT_MS = 55_000;
 
@@ -13,11 +13,10 @@ export const KioskLayout = () => {
   const navigate = useNavigate();
   const soundEnabled = useKioskSoundEnabled();
   const lastInteractionRef = React.useRef(Date.now());
-  const showWatermark = location.pathname !== '/';
 
   React.useEffect(() => {
     lastInteractionRef.current = Date.now();
-  }, [location.pathname, navigate]);
+  }, [location.pathname]);
 
   React.useEffect(() => {
     const markActive = () => {
@@ -50,7 +49,7 @@ export const KioskLayout = () => {
 
   return (
     <div className="kiosk-shell relative h-[100dvh] w-full flex flex-col overflow-hidden selection:bg-[#f03861]/20 bg-[#fafafc] text-gray-900 font-sans">
-      <div className="kiosk-shell__overlay absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[10%] left-[5%] w-3 h-3 rounded-full bg-pink-200 opacity-50"></div>
         <div className="absolute top-[5%] right-[25%] w-4 h-4 rounded-full bg-orange-200 opacity-50"></div>
         <div className="absolute top-[2%] right-[15%] w-2 h-2 rounded-full bg-rose-300 opacity-50"></div>
@@ -63,7 +62,9 @@ export const KioskLayout = () => {
 
       <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-60"></div>
 
-      <div className="kiosk-watermark fixed left-[max(1.5rem,env(safe-area-inset-left))] top-[max(1.5rem,env(safe-area-inset-top))] z-40 pointer-events-auto">
+      <header className="kiosk-header relative z-20 flex items-center justify-between gap-4 px-6 pt-4 sm:px-8 sm:pt-6">
+        <KioskBrandMark />
+
         <Button
           type="button"
           variant="outline"
@@ -74,15 +75,9 @@ export const KioskLayout = () => {
         >
           {soundEnabled ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
         </Button>
-      </div>
+      </header>
 
-      {showWatermark && (
-        <div className="fixed top-[max(1.5rem,env(safe-area-inset-top))] right-[max(1.5rem,env(safe-area-inset-right))] z-20 pointer-events-none">
-          <img src={aroxLogo} alt="Arox" className="h-12 w-auto opacity-70 drop-shadow-sm" />
-        </div>
-      )}
-
-      <main className="kiosk-main flex-1 flex flex-col z-10 pb-28 pt-24">
+      <main className="kiosk-main flex-1 flex flex-col z-10 px-4 pb-28 pt-4 sm:px-6 sm:pt-6">
         <Outlet />
       </main>
 
@@ -107,6 +102,3 @@ export const KioskLayout = () => {
     </div>
   );
 };
-
-
-
