@@ -24,7 +24,11 @@ export const KioskLayout = () => {
 
       {showWatermark && (
         <div className="kiosk-watermark absolute top-6 right-6 z-20 pointer-events-none">
-          <img src={aroxLogo} alt="Arox" className="h-12 w-auto opacity-70 drop-shadow-sm" />
+          <img
+            src={aroxLogo}
+            alt="Arox"
+            className="h-8 w-auto max-w-[7rem] object-contain opacity-70 drop-shadow-sm sm:h-10 sm:max-w-[8.5rem]"
+          />
         </div>
       )}
 

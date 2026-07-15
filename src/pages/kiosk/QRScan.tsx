@@ -19,7 +19,7 @@ export const QRScan = () => {
     const startScanner = async () => {
       try {
         await scannerRef.current?.start(
-          { facingMode: 'environment' },
+          { facingMode: 'user' },
           {
             fps: 30,
             qrbox: { width: 350, height: 350 },
@@ -131,4 +131,3 @@ export const QRScan = () => {
     </div>
   );
 };
-
