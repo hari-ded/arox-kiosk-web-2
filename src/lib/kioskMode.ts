@@ -1,4 +1,4 @@
-export function isLegacyTabletMode() {
+﻿export function isLegacyTabletMode() {
   if (typeof window === 'undefined') return false;
 
   try {
@@ -15,8 +15,9 @@ export function isLegacyTabletMode() {
     const width = window.screen.width || 0;
     const height = window.screen.height || 0;
     const landscapeTablet = width >= 1024 && height >= 600 && Math.min(width, height) <= 900;
+    const tabletLike = hasTouch && Math.max(width, height) >= 900 && Math.min(width, height) >= 600;
 
-    return isAndroid && hasTouch && (isTab4Ten || (isLenovo && landscapeTablet));
+    return isAndroid && hasTouch && (isTab4Ten || (isLenovo && tabletLike) || landscapeTablet);
   } catch {
     return false;
   }

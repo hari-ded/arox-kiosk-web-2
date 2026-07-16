@@ -517,3 +517,161 @@ html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-sm {
   }
 }
 
+
+html[data-kiosk-mode='legacy'] .kiosk-shell {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(240, 56, 97, 0.12), transparent 18%),
+    radial-gradient(circle at 88% 10%, rgba(245, 166, 35, 0.14), transparent 16%),
+    radial-gradient(circle at 78% 78%, rgba(255, 122, 149, 0.08), transparent 20%),
+    linear-gradient(180deg, #fffdf9 0%, #fff7ef 38%, #fffafc 100%);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-main {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.02) 100%);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-header {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.64) 100%);
+  border-bottom: 1px solid rgba(240, 56, 97, 0.08);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-brand-mark {
+  filter: saturate(1.1);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-button[data-variant='default'] {
+  background: linear-gradient(90deg, #f03861 0%, #f5a623 100%);
+  box-shadow: 0 14px 28px rgba(240, 56, 97, 0.2);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-button[data-variant='outline'] {
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf3 100%);
+  border-color: rgba(245, 166, 35, 0.28);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-button[data-variant='ghost'] {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(228, 231, 236, 0.92);
+  color: #374151;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-button[data-variant='danger'] {
+  background: linear-gradient(90deg, #dc2626 0%, #f03861 100%);
+  box-shadow: 0 14px 26px rgba(220, 38, 38, 0.2);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-screen .bg-clip-text.text-transparent,
+html[data-kiosk-mode='legacy'] .kiosk-screen [class*='bg-clip-text'][class*='text-transparent'] {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  color: #f03861 !important;
+  -webkit-text-fill-color: #f03861 !important;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-xl,
+html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-lg,
+html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-md,
+html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-sm,
+html[data-kiosk-mode='legacy'] .kiosk-screen .bg-white\/96,
+html[data-kiosk-mode='legacy'] .kiosk-screen .bg-white\/95,
+html[data-kiosk-mode='legacy'] .kiosk-screen .bg-white\/90,
+html[data-kiosk-mode='legacy'] .kiosk-screen .bg-black\/25,
+html[data-kiosk-mode='legacy'] .kiosk-screen .bg-black\/45 {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-home__action {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.8), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #fff8f2 100%);
+  border-color: rgba(240, 56, 97, 0.12);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-home__action-icon--scan {
+  background: linear-gradient(180deg, #fff4dc 0%, #ffeab8 100%);
+  color: #d97706;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-home__action-icon--code {
+  background: linear-gradient(180deg, #ffe7ef 0%, #ffd0df 100%);
+  color: #db2777;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-panel__header {
+  background: linear-gradient(90deg, #fff3df 0%, #fff0f6 100%);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-code-display {
+  background: linear-gradient(180deg, #ffffff 0%, #fff8f1 100%);
+  border-color: rgba(240, 56, 97, 0.14);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-code-display__prefix {
+  color: #db2777;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-scan-frame {
+  background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+  border-color: rgba(245, 166, 35, 0.85);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-scan-frame__overlay {
+  border-color: rgba(0, 0, 0, 0.52);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-message {
+  background: linear-gradient(180deg, #fff7ed 0%, #fff1f2 100%);
+  color: #4b5563;
+  border: 1px solid rgba(245, 166, 35, 0.25);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-status-tile {
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  border-color: rgba(229, 231, 235, 0.95);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-status-value {
+  color: #111827;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-status-pill {
+  background: linear-gradient(180deg, #fff9f1 0%, #fff2f5 100%);
+  border-color: rgba(245, 166, 35, 0.22);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-progress {
+  background: #e5e7eb;
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-progress__fill {
+  background: linear-gradient(90deg, #f5a623 0%, #f03861 100%);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-footer__status {
+  border-color: rgba(245, 166, 35, 0.18);
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf2 100%);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-footer__brand strong {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+html[data-kiosk-mode='legacy'] .kiosk-screen .text-white {
+  color: #ffffff;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-xl,
+  html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-lg,
+  html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-md,
+  html[data-kiosk-mode='legacy'] .kiosk-screen .backdrop-blur-sm {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
