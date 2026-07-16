@@ -1,6 +1,7 @@
-import React from 'react';
+﻿import React from 'react';
 import { useLocation, Outlet, useNavigate } from 'react-router-dom';
 import { Volume2, VolumeX } from 'lucide-react';
+import { KioskBrandMark } from '../components/KioskBrandMark';
 import { SupportOverlay } from '../components/SupportOverlay';
 import { Button } from '../components/Button';
 import { toggleKioskSoundEnabled, useKioskSoundEnabled } from '../utils/audio';
@@ -62,19 +63,17 @@ export const KioskLayout = () => {
       <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-60"></div>
 
       <header className="kiosk-header relative z-20 flex h-[84px] items-center justify-between gap-4 px-6 pt-4">
-        <div className="flex h-[36px] items-center">
-          <span className="text-[13px] font-semibold uppercase tracking-[0.24em] text-gray-400">PrintEZ Kiosk</span>
-        </div>
+        <KioskBrandMark />
 
         <Button
           type="button"
-          variant="outline"
+          variant="default"
           size="sm"
-          className="rounded-full w-[60px] px-0 bg-white/90 backdrop-blur-md shadow-sm border-white/70"
+          className="rounded-full w-[60px] px-0 border-0 shadow-[0_12px_24px_rgba(240,56,97,0.2)]"
           onClick={toggleKioskSoundEnabled}
           aria-label={soundEnabled ? 'Mute kiosk sounds' : 'Unmute kiosk sounds'}
         >
-          {soundEnabled ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
+          {soundEnabled ? <Volume2 className="w-6 h-6 text-white" /> : <VolumeX className="w-6 h-6 text-white" />}
         </Button>
       </header>
 
